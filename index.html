@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyo Toys – Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #fef7f0;
+        color: #1e2a32;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1300px;
+        margin: auto;
+        padding: 0 20px;
+    }
+
+    .header {
+        background: white;
+        padding: 15px 0;
+        border-bottom: 2px solid #ffe5d0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 26px;
+        font-weight: 800;
+        color: #e05a2a;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .logo i {
+        font-size: 28px;
+    }
+
+   
+    .nav-links,
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 28px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .nav-menu a {
+        text-decoration: none;
+        color: #2c3e2f;
+        font-weight: 600;
+        font-size: 15px;
+        transition: 0.2s;
+        padding: 6px 0;
+        border-bottom: 2px solid transparent;
+        justify-content: end;
+    }
+
+    .nav-links a:hover,
+    .nav-menu a:hover,
+    .nav-links a.active,
+    .nav-menu a.active {
+        color: #e05a2a;
+        border-bottom-color: #e05a2a;
+    }
+
+    .nav-links .cart-link,
+    .nav-menu .cart-link {
+        position: relative;
+        font-size: 20px;
+        border-bottom: none;
+    }
+
+    .nav-links .cart-link .badge,
+    .nav-menu .cart-link .badge {
+        position: absolute;
+        top: -8px;
+        right: -12px;
+        background: #e05a2a;
+        color: white;
+        font-size: 11px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: #2c3e2f;
+    }
+
+    .hero-section {
+        margin: 25px 0 35px;
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 500px;
+    }
+
+    .hero-slider .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+    }
+
+    .hero-slider .slide.active {
+        opacity: 1;
+    }
+
+    .hero-slider .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .hero-slider .slide .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-slider .slide .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        width: 90%;
+        max-width: 750px;
+        padding: 20px;
+    }
+
+    .hero-slider .slide .content .sub {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-weight: 600;
+        color: #f4b942;
+        margin-bottom: 10px;
+    }
+
+    .hero-slider .slide .content h1 {
+        font-size: 44px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    .hero-slider .slide .content h1 span {
+        color: #f4b942;
+    }
+
+    .hero-slider .slide .content p {
+        font-size: 17px;
+        opacity: 0.92;
+        margin-bottom: 25px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
+    }
+
+    .hero-slider .slide .content .btn-shop {
+        background: #e05a2a;
+        padding: 14px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        color: white;
+        font-weight: 700;
+        display: inline-block;
+        transition: 0.25s;
+        font-size: 16px;
+    }
+
+    .hero-slider .slide .content .btn-shop:hover {
+        background: #c54518;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(224, 90, 42, 0.4);
+    }
+
+    .hero-slider .prev-btn,
+    .hero-slider .next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.25);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.3s;
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-slider .prev-btn:hover,
+    .hero-slider .next-btn:hover {
+        background: rgba(255, 255, 255, 0.5);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .hero-slider .prev-btn {
+        left: 20px;
+    }
+
+    .hero-slider .next-btn {
+        right: 20px;
+    }
+
+    .hero-dots {
+        position: absolute;
+        bottom: 25px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 10;
+    }
+
+    .hero-dots .dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        margin: 0 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .hero-dots .dot.active {
+        background: #e05a2a;
+        transform: scale(1.25);
+    }
+
+    .hero-dots .dot:hover {
+        background: #e05a2a;
+    }
+
+    .featured-section {
+        margin: 30px 0 20px;
+    }
+
+    .featured-section .section-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 6px;
+    }
+
+    .featured-section .section-sub {
+        text-align: center;
+        color: #888;
+        margin-bottom: 30px;
+        font-size: 16px;
+    }
+
+    .compare-bar {
+        background: white;
+        border-radius: 60px;
+        padding: 14px 22px;
+        margin: 0 0 30px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        border: 1px solid #ffe0cd;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .compare-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .compare-chip {
+        background: #fcf6f0;
+        padding: 5px 14px;
+        border-radius: 30px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #ffe0cd;
+    }
+
+    .compare-chip .remove-compare {
+        background: none;
+        border: none;
+        color: #e05a2a;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    .compare-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .compare-actions button {
+        padding: 8px 18px;
+        border: none;
+        border-radius: 40px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        font-family: inherit;
+    }
+
+    .clear-compare {
+        background: #e9e5df;
+        color: #2c3e2f;
+    }
+
+    .clear-compare:hover {
+        background: #ddd8d0;
+    }
+
+    .compare-now {
+        background: #e05a2a;
+        color: white;
+    }
+
+    .compare-now:hover {
+        background: #c54518;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(224, 90, 42, 0.3);
+    }
+
+    .compare-empty {
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 28px;
+        width: 100%;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid #ffe5d0;
+        transition: 0.3s;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        text-decoration: none;
+        color: #1e2a32;
+    }
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        border-color: #e05a2a;
+    }
+
+    .product-card .img-box {
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+        background: #faf3ec;
+    }
+
+    .product-card .img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+    .product-card:hover .img-box img {
+        transform: scale(1.05);
+    }
+
+    .product-card .discount {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: #e05a2a;
+        color: white;
+        padding: 4px 14px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .product-card .featured {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: #f4b942;
+        color: #1e2a32;
+        padding: 4px 14px;
+        border-radius: 30px;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .product-card .info {
+        padding: 18px;
+    }
+
+    .product-card .info .cat {
+        font-size: 12px;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+
+    .product-card .info .name {
+        font-size: 17px;
+        font-weight: 700;
+        margin: 4px 0 6px;
+    }
+
+    .product-card .info .rating {
+        color: #f4b942;
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    .product-card .info .rating span {
+        color: #999;
+        font-size: 12px;
+    }
+
+    .product-card .info .price {
+        font-size: 20px;
+        font-weight: 800;
+        color: #e05a2a;
+    }
+
+    .product-card .info .price .old {
+        font-size: 15px;
+        font-weight: 400;
+        color: #999;
+        text-decoration: line-through;
+        margin-right: 10px;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+    .product-actions button {
+        flex: 1;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.25s;
+        font-family: inherit;
+    }
+
+    .btn-cart {
+        background: #e05a2a;
+        color: white;
+    }
+
+    .btn-cart:hover {
+        background: #c54518;
+        transform: scale(1.02);
+    }
+
+    .btn-cart.in-cart {
+        background: #28a745;
+    }
+
+    .btn-cart.in-cart:hover {
+        background: #dc3545;
+    }
+
+    .btn-compare {
+        background: #f0ede8;
+        color: #2c3e2f;
+    }
+
+    .btn-compare:hover {
+        background: #e0dcd6;
+    }
+
+    .btn-compare.active {
+        background: #e05a2a;
+        color: white;
+    }
+
+    .banner-section {
+        background: linear-gradient(135deg, #e05a2a, #f4b942);
+        border-radius: 28px;
+        padding: 50px 40px;
+        margin: 40px 0 45px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 25px;
+        color: white;
+    }
+
+    .banner-section h2 {
+        font-size: 32px;
+        font-weight: 800;
+    }
+
+    .banner-section p {
+        font-size: 17px;
+        opacity: 0.92;
+        max-width: 500px;
+    }
+
+    .banner-section .btn-banner {
+        background: white;
+        color: #e05a2a;
+        padding: 14px 38px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: 0.25s;
+        display: inline-block;
+    }
+
+    .banner-section .btn-banner:hover {
+        transform: scale(1.04);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonials-section {
+        margin: 30px 0 45px;
+    }
+
+    .testimonials-section .section-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 6px;
+    }
+
+    .testimonials-section .section-sub {
+        text-align: center;
+        color: #888;
+        margin-bottom: 30px;
+        font-size: 16px;
+    }
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 28px;
+    }
+
+    .testimonial-card {
+        background: white;
+        padding: 28px 25px;
+        border-radius: 20px;
+        border: 1px solid #ffe5d0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .testimonial-card .stars {
+        color: #f4b942;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .testimonial-card .quote {
+        font-size: 15px;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 14px;
+    }
+
+    .testimonial-card .author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .testimonial-card .author img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ffe0cd;
+    }
+
+    .testimonial-card .author .name {
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .testimonial-card .author .role {
+        font-size: 13px;
+        color: #999;
+    }
+
+    .newsletter-section {
+        background: white;
+        border-radius: 28px;
+        padding: 45px 40px;
+        margin: 30px 0 50px;
+        border: 1px solid #ffe5d0;
+        text-align: center;
+    }
+
+    .newsletter-section h2 {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 6px;
+    }
+
+    .newsletter-section p {
+        color: #888;
+        margin-bottom: 22px;
+        font-size: 16px;
+    }
+
+    .newsletter-form {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 550px;
+        margin: auto;
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        min-width: 220px;
+        padding: 14px 20px;
+        border: 2px solid #f0e8e0;
+        border-radius: 50px;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        transition: 0.25s;
+        background: #fefbf8;
+    }
+
+    .newsletter-form input:focus {
+        border-color: #e05a2a;
+        box-shadow: 0 0 0 4px rgba(224, 90, 42, 0.08);
+    }
+
+    .newsletter-form button {
+        padding: 14px 36px;
+        background: #e05a2a;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.25s;
+        font-family: inherit;
+    }
+
+    .newsletter-form button:hover {
+        background: #c54518;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(224, 90, 42, 0.3);
+    }
+
+    .footer {
+            background: #241f1a;
+            color: #ecd9ca;
+            padding: 45px 0 25px;
+            margin-top: 20px;
+        }
+
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 35px;
+        }
+
+        .footer-col h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #ecd9ca;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: #f4b942;
+        }
+
+        .footer .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3a322c;
+            color: #ecd9ca;
+            text-decoration: none;
+            transition: 0.25s;
+            font-size: 17px;
+        }
+
+        .footer .social-icons a:hover {
+            background: #e05a2a;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #3a322c;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+
+    .cart-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 199;
+        display: none;
+    }
+
+    .cart-overlay.active {
+        display: block;
+    }
+
+    .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -420px;
+        width: 400px;
+        height: 100%;
+        background: white;
+        box-shadow: -4px 0 30px rgba(0, 0, 0, 0.12);
+        z-index: 200;
+        transition: right 0.35s ease;
+        padding: 25px 22px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-sidebar.open {
+        right: 0;
+    }
+
+    .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #ffe5d0;
+        padding-bottom: 16px;
+    }
+
+    .cart-header h3 {
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cart-header h3 span {
+        background: #e05a2a;
+        color: white;
+        font-size: 14px;
+        padding: 2px 12px;
+        border-radius: 30px;
+    }
+
+    .close-cart {
+        background: none;
+        border: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: #999;
+        transition: 0.2s;
+        line-height: 1;
+    }
+
+    .close-cart:hover {
+        color: #333;
+        transform: rotate(90deg);
+    }
+
+    .cart-items-list {
+        flex: 1;
+        overflow-y: auto;
+        margin: 18px 0 15px;
+        padding-right: 5px;
+    }
+
+    .cart-items-list::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .cart-items-list::-webkit-scrollbar-thumb {
+        background: #e0dcd6;
+        border-radius: 10px;
+    }
+
+    .cart-empty {
+        text-align: center;
+        color: #bbb;
+        padding: 50px 0;
+        font-size: 16px;
+    }
+
+    .cart-empty i {
+        font-size: 50px;
+        display: block;
+        margin-bottom: 15px;
+        color: #e0dcd6;
+    }
+
+    .cart-item {
+        display: flex;
+        gap: 14px;
+        border-bottom: 1px solid #f0e8e0;
+        padding: 14px 0;
+        align-items: center;
+    }
+
+    .cart-item-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 12px;
+        background: #f5f0ea;
+        flex-shrink: 0;
+    }
+
+    .cart-item-info {
+        flex: 1;
+    }
+
+    .cart-item-name {
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .cart-item-price {
+        color: #e05a2a;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .cart-item-qty {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 4px;
+    }
+
+    .cart-item-qty button {
+        width: 28px;
+        height: 28px;
+        border: none;
+        border-radius: 50%;
+        background: #f0ede8;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 15px;
+        transition: 0.2s;
+    }
+
+    .cart-item-qty button:hover {
+        background: #e0dcd6;
+    }
+
+    .cart-item-qty span {
+        font-weight: 700;
+        min-width: 24px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .cart-item-remove {
+        background: none;
+        border: none;
+        color: #ccc;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.2s;
+        padding: 0 5px;
+    }
+
+    .cart-item-remove:hover {
+        color: #e05a2a;
+    }
+
+    .cart-footer {
+        border-top: 2px solid #ffe5d0;
+        padding-top: 18px;
+    }
+
+    .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 14px;
+    }
+
+    .cart-total span:last-child {
+        color: #e05a2a;
+    }
+
+    .checkout-btn {
+        width: 100%;
+        padding: 14px;
+        background: #e05a2a;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 17px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+
+    .checkout-btn:hover {
+        background: #c54518;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(224, 90, 42, 0.3);
+    }
+
+    .compare-modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 400;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .compare-modal-overlay.active {
+        display: flex;
+    }
+
+    .compare-modal-content {
+        background: white;
+        max-width: 1000px;
+        width: 95%;
+        border-radius: 24px;
+        padding: 30px 35px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        animation: modalFade 0.3s ease;
+    }
+
+    @keyframes modalFade {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .compare-modal-close {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: none;
+        border: none;
+        font-size: 32px;
+        cursor: pointer;
+        color: #999;
+        transition: 0.2s;
+        line-height: 1;
+    }
+
+    .compare-modal-close:hover {
+        color: #333;
+        transform: rotate(90deg);
+    }
+
+    .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    .compare-table th,
+    .compare-table td {
+        border-bottom: 1px solid #edd9ca;
+        padding: 14px 12px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .compare-table th {
+        background: #fcf6f0;
+        font-weight: 700;
+        color: #2c3e2f;
+    }
+
+    .compare-table td img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    @media (max-width: 992px) {
+        .hero-slider {
+            height: 400px;
+        }
+        .hero-slider .slide .content h1 {
+            font-size: 34px;
+        }
+        .banner-section {
+            flex-direction: column;
+            text-align: center;
+            padding: 35px 25px;
+        }
+        .compare-modal-content {
+            padding: 20px;
+        }
+        .cart-sidebar {
+            width: 100%;
+            right: -100%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+
+        .nav-links,
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0 5px;
+            gap: 12px;
+            border-top: 1px solid #ffe5d0;
+            margin-top: 12px;
+        }
+
+        .nav-links.open,
+        .nav-menu.open {
+            display: flex;
+        }
+
+        .header .container {
+            flex-wrap: wrap;
+        }
+
+        .hero-slider {
+            height: 350px;
+        }
+        .hero-slider .slide .content h1 {
+            font-size: 28px;
+        }
+        .hero-slider .slide .content p {
+            font-size: 15px;
+        }
+        .hero-slider .prev-btn,
+        .hero-slider .next-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+        .hero-slider .prev-btn {
+            left: 10px;
+        }
+        .hero-slider .next-btn {
+            right: 10px;
+        }
+
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .testimonials-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .banner-section h2 {
+            font-size: 24px;
+        }
+
+        .footer .container {
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .compare-bar {
+            flex-direction: column;
+            align-items: stretch;
+            border-radius: 30px;
+            padding: 16px;
+        }
+        .compare-actions {
+            justify-content: center;
+        }
+        .compare-table td img {
+            width: 60px;
+            height: 60px;
+        }
+        .compare-table th,
+        .compare-table td {
+            padding: 10px 8px;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-slider {
+            height: 300px;
+        }
+        .hero-slider .slide .content h1 {
+            font-size: 22px;
+        }
+        .hero-slider .slide .content p {
+            font-size: 14px;
+            display: none;
+        }
+        .hero-slider .slide .content .btn-shop {
+            padding: 10px 24px;
+            font-size: 14px;
+        }
+        .hero-slider .prev-btn,
+        .hero-slider .next-btn {
+            width: 34px;
+            height: 34px;
+            font-size: 14px;
+        }
+
+        .products-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .product-card .img-box {
+            height: 150px;
+        }
+        .product-card .info .name {
+            font-size: 14px;
+        }
+        .product-card .info .price {
+            font-size: 16px;
+        }
+        .product-actions button {
+            font-size: 12px;
+            padding: 8px 6px;
+        }
+
+        .newsletter-form input {
+            min-width: 100%;
+        }
+
+        .footer .container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .banner-section {
+            padding: 25px 18px;
+        }
+        .banner-section h2 {
+            font-size: 20px;
+        }
+
+        .hero-dots .dot {
+            width: 10px;
+            height: 10px;
+            margin: 0 4px;
+        }
+
+        .compare-modal-content {
+            padding: 16px;
+        }
+        .compare-table th,
+        .compare-table td {
+            font-size: 12px;
+            padding: 8px 6px;
+        }
+        .compare-table td img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-rocket"></i>
+                Toyo Toys
+            </a>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="category.html">Category</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="cart-link">   
+              
+            </li>
+        </ul>
+        </div>
+    </header>
+
+    <div class="container hero-section">
+        <div class="hero-slider" id="heroSlider">
+            <div class="slide active" data-index="0">
+                <img src="https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Hero 1">
+                <div class="overlay"></div>
+                <div class="content">
+                    <span class="sub">Welcome to Toyo Toys</span>
+                    <h1>Discover the <span>Magic</span> of Play</h1>
+                    <p>Discover magical toys that inspire imagination, creativity, and endless fun for every age.</p>
+                    <a href="#" class="btn-shop">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="slide" data-index="1">
+                <img src="Gemini_Generated_Image_y1ptu4y1ptu4y1pt.png" alt="Hero 2">
+                <div class="overlay"></div>
+                <div class="content">
+                    <span class="sub">Limited Time Offer</span>
+                    <h1>Up to <span>40% Off</span> Storewide</h1>
+                    <p>Hurry! Grab the best deals on MATTEL, LEGO, Hasbro, and STEM toys. Don't miss out!</p>
+                    <a href="#" class="btn-shop">Shop Sale <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="slide" data-index="2">
+                <img src="Gemini_Generated_Image_zglnbazglnbazgln.png" alt="Hero 3">
+                <div class="overlay"></div>
+                <div class="content">
+                    <span class="sub">STEM Learning</span>
+                    <h1>Learn & <span>Play</span> with STEM</h1>
+                    <p>Educational toys that make learning fun and exciting for kids of all ages. Build the future!</p>
+                    <a href="#" class="btn-shop">Explore STEM <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="slide" data-index="3">
+                <img src="Gemini_Generated_Image_rqyg18rqyg18rqyg.png" alt="Hero 4">
+                <div class="overlay"></div>
+                <div class="content">
+                    <span class="sub">Free Shipping</span>
+                    <h1>Delivered with <span>Love</span></h1>
+                    <p>Free shipping worldwide on orders over $50. 30-day returns — your satisfaction is our promise.</p>
+                    <a href="#" class="btn-shop">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <button class="prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="next-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="hero-dots" id="heroDots"></div>
+        </div>
+    </div>
+
+    <section class="container featured-section">
+        <h2 class="section-title">✨ Best Sellers</h2>
+        <p class="section-sub">Our most loved toys — handpicked just for you</p>
+
+        <div class="compare-bar">
+            <div class="compare-list" id="compareList">
+                <span class="compare-empty">No products selected for comparison</span>
+            </div>
+            <div class="compare-actions">
+                <button class="clear-compare" id="clearCompareBtn">Clear</button>
+                <button class="compare-now" id="compareNowBtn">Compare Now</button>
+            </div>
+        </div>
+
+        <div class="products-grid">
+
+            
+            <div class="product-card" data-id="1">
+                <div class="img-box">
+                    <img src="https://www.toyzone.pk/cdn/shop/files/6_1bbdea3f-fd9f-4b07-83fd-af2633defee7_1280x.jpg?v=1774701130" alt="Wooden Train">
+                    <span class="discount">-15%</span>
+                    <span class="featured">⭐ Best Seller</span>
+                </div>
+                <div class="info">
+                    <div class="cat">MATTEL</div>
+                    <div class="name">Wooden Train Set</div>
+                    <div class="rating">★★★★★ <span>(24)</span></div>
+                    <div class="price"><span class="old">$32.99</span> $27.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="1">Add to Cart</button>
+                        <button class="btn-compare" data-id="1">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-card" data-id="2">
+                <div class="img-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-L0Js_nvia4d-MgwuOr41Yx200JX-v6HZEg&s" alt="Coding Robot">
+                    <span class="discount">-20%</span>
+                    <span class="featured">🧠 STEM</span>
+                </div>
+                <div class="info">
+                    <div class="cat">STEM</div>
+                    <div class="name">Coding Robot Kit</div>
+                    <div class="rating">★★★★★ <span>(53)</span></div>
+                    <div class="price"><span class="old">$68.99</span> $54.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="2">Add to Cart</button>
+                        <button class="btn-compare" data-id="2">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="product-card" data-id="3">
+                <div class="img-box">
+                    <img src="https://i.ebayimg.com/images/g/NNIAAOSwCFBmk4dM/s-l1200.jpg" alt="LEGO Rocket">
+                    <span class="discount">-12%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">LEGO</div>
+                    <div class="name">Space Rocket LEGO Set</div>
+                    <div class="rating">★★★★★ <span>(41)</span></div>
+                    <div class="price"><span class="old">$68.99</span> $59.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="3">Add to Cart</button>
+                        <button class="btn-compare" data-id="3">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="4">
+                <div class="img-box">
+                    <img src="https://almascollections.com/cdn/shop/files/Glowing_Winged_Alicorn_Unicorn_Plush_Toy_in_pink_color_1024x1024.webp?v=1748942353" alt="Plush Unicorn">
+                    <span class="discount">-25%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">Hasbro</div>
+                    <div class="name">Plush Unicorn</div>
+                    <div class="rating">★★★★★ <span>(28)</span></div>
+                    <div class="price"><span class="old">$19.99</span> $14.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="4">Add to Cart</button>
+                        <button class="btn-compare" data-id="4">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-card" data-id="5">
+                <div class="img-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9JbzGMUz0pCkNAQaddwVxNY3Cp61sGbxuGQ&s" alt="Magnetic Tiles">
+                    <span class="discount">-10%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">Spin Master</div>
+                    <div class="name">Magnetic Building Tiles</div>
+                    <div class="rating">★★★★☆ <span>(27)</span></div>
+                    <div class="price"><span class="old">$44.99</span> $39.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="5">Add to Cart</button>
+                        <button class="btn-compare" data-id="5">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="6">
+                <div class="img-box">
+                    <img src="https://m.media-amazon.com/images/I/81PhYZVDb+L._AC_UF894,1000_QL80_.jpg" alt="Puzzle Globe">
+                    <span class="discount">-10%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">STEM</div>
+                    <div class="name">Puzzle Globe</div>
+                    <div class="rating">★★★★☆ <span>(19)</span></div>
+                    <div class="price"><span class="old">$33.99</span> $29.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="6">Add to Cart</button>
+                        <button class="btn-compare" data-id="6">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="product-card" data-id="7">
+                <div class="img-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXVRKvTurhuROX76YJBZUSbsevOLRCkjFEbA&s" alt="Barbie Doll">
+                    <span class="discount">-8%</span>
+                    <span class="featured">🌟 New</span>
+                </div>
+                <div class="info">
+                    <div class="cat">MATTEL</div>
+                    <div class="name">Barbie Fashion Doll</div>
+                    <div class="rating">★★★★★ <span>(32)</span></div>
+                    <div class="price"><span class="old">$22.99</span> $21.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="7">Add to Cart</button>
+                        <button class="btn-compare" data-id="7">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="product-card" data-id="8">
+                <div class="img-box">
+                    <img src="https://www.toynix.pk/cdn/shop/files/ChatGPT_Image_Feb_14_2026_01_41_22_PM.png?v=1771059505" alt="RC Car">
+                    <span class="discount">-18%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">Spin Master</div>
+                    <div class="name">Remote Control Car</div>
+                    <div class="rating">★★★★☆ <span>(18)</span></div>
+                    <div class="price"><span class="old">$42.99</span> $34.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="8">Add to Cart</button>
+                        <button class="btn-compare" data-id="8">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="product-card" data-id="9">
+                <div class="img-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwsLf508yfiIwvg8ZuuAQtw0sCZC6rZU3oVg&s" alt="Dino Set">
+                    <span class="discount">-22%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">Hasbro</div>
+                    <div class="name">Dinosaur Playset</div>
+                    <div class="rating">★★★★★ <span>(37)</span></div>
+                    <div class="price"><span class="old">$29.99</span> $23.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="9">Add to Cart</button>
+                        <button class="btn-compare" data-id="9">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="product-card" data-id="10">
+                <div class="img-box">
+                    <img src="https://cdn.shopify.com/s/files/1/0550/8487/5830/files/1282_Deluxe_Wooden_Standing_Easel_120522-5316_480x480.jpg?v=1687014441">
+                    <span class="discount">-5%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">STEM</div>
+                    <div class="name">Art Easel Studio</div>
+                    <div class="rating">★★★★☆ <span>(22)</span></div>
+                    <div class="price"><span class="old">$52.99</span> $49.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="10">Add to Cart</button>
+                        <button class="btn-compare" data-id="10">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="product-card" data-id="11">
+                <div class="img-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFQmMGifvQxvYsQWZSZbOD4QXAw6tDzQPKxg&s" alt="Activity Cube">
+                    <span class="discount">-8%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">LEGO</div>
+                    <div class="name">Baby Activity Cube</div>
+                    <div class="rating">★★★★★ <span>(45)</span></div>
+                    <div class="price"><span class="old">$24.99</span> $22.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="11">Add to Cart</button>
+                        <button class="btn-compare" data-id="11">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="12">
+                <div class="img-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEqxHjPrz80CJocqIZsloiiuJJiFgqWGls5w&s" alt="Play Dough">
+                    <span class="discount">-15%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">Hasbro</div>
+                    <div class="name">Play Dough Mega Set</div>
+                    <div class="rating">★★★★★ <span>(29)</span></div>
+                    <div class="price"><span class="old">$29.99</span> $25.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="12">Add to Cart</button>
+                        <button class="btn-compare" data-id="12">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-card" data-id="13">
+                <div class="img-box">
+                    <img src="https://odeez.pk/cdn/shop/files/WhatsAppImage2026-03-25at3.33.47PM.jpg?v=1774435094" alt="Balance Board">
+                    <span class="discount">-10%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">Spin Master</div>
+                    <div class="name">Balance Board</div>
+                    <div class="rating">★★★★☆ <span>(16)</span></div>
+                    <div class="price"><span class="old">$49.99</span> $44.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="13">Add to Cart</button>
+                        <button class="btn-compare" data-id="13">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-card" data-id="14">
+                <div class="img-box">
+                    <img src="https://i0.wp.com/mcusercontent.com/21ab45285a43248c52473f8e6/images/da4b7c04-027b-4033-a2d3-68c372c94299.jpeg?ssl=1" alt="Memory Game">
+                    <span class="discount">-20%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">STEM</div>
+                    <div class="name">Memory Card Game</div>
+                    <div class="rating">★★★★★ <span>(33)</span></div>
+                    <div class="price"><span class="old">$16.99</span> $12.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="14">Add to Cart</button>
+                        <button class="btn-compare" data-id="14">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-card" data-id="15">
+                <div class="img-box">
+                    <img src="https://m.media-amazon.com/images/I/81M9+wmHTaL._AC_SL1500_.jpg" alt="Drum Pad">
+                    <span class="discount">-15%</span>
+                </div>
+                <div class="info">
+                    <div class="cat">LEGO</div>
+                    <div class="name">Musical Drum Pad</div>
+                    <div class="rating">★★★★☆ <span>(21)</span></div>
+                    <div class="price"><span class="old">$38.99</span> $32.99</div>
+                    <div class="product-actions">
+                        <button class="btn-cart" data-id="15">Add to Cart</button>
+                        <button class="btn-compare" data-id="15">Compare</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="container banner-section">
+        <div>
+            <h2>🎉 Summer Sale!</h2>
+            <p>Get up to 40% off on all STEM toys and puzzles. Limited time offer — don't miss out!</p>
+        </div>
+        <a href="#" class="btn-banner">Shop Sale <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <section class="container testimonials-section">
+        <h2 class="section-title">💬 What Parents Say</h2>
+        <p class="section-sub">Real reviews from happy families</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"My son absolutely loves his new LEGO set! The quality is amazing and he's been building for hours. Toyo Toys is our go-to store now."</p>
+                <div class="author">
+                    <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Sarah">
+                    <div><div class="name">Sarah Ahmed</div><div class="role">Mother of 2</div></div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"The coding robot kit was a game-changer for my daughter. She's learning programming while having fun. Best investment ever!"</p>
+                <div class="author">
+                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Michael">
+                    <div><div class="name">Michael Khan</div><div class="role">Father of 1</div></div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Fast delivery, great prices, and the toys are always top-notch. My kids can't get enough of the plush unicorn collection!"</p>
+                <div class="author">
+                    <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Aisha">
+                    <div><div class="name">Aisha Malik</div><div class="role">Mother of 3</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container newsletter-section">
+        <h2>📬 Stay in the Loop</h2>
+        <p>Subscribe to get the latest deals, new arrivals, and exclusive offers — delivered to your inbox.</p>
+        <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe <i class="fa-regular fa-paper-plane"></i></button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>Toyo Toys</h4>
+                <p>Premium toys that spark imagination and learning for every age.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Returns &amp; Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Toyo Toys – Where imagination meets quality.</p>
+        </div>
+    </footer>
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart <span id="cartTotalItems">0</span></h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <div class="cart-empty">
+                <i class="fa-regular fa-face-smile"></i>
+                Your cart is empty<br>
+                <span style="font-size:14px; color:#ccc;">Start adding some toys!</span>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalPrice">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fa-regular fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <div class="compare-modal-overlay" id="compareModal">
+        <div class="compare-modal-content">
+            <button class="compare-modal-close" id="compareModalClose">&times;</button>
+            <h2 style="margin-bottom: 10px;">🔄 Compare Products</h2>
+            <p style="color: #888; margin-bottom: 20px;">See how your selected toys stack up against each other.</p>
+            <div id="compareTableContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        var menuToggle = document.getElementById('menuToggle');
+        var navMenu = document.getElementById('navMenu');
+        menuToggle.onclick = function() {
+            navMenu.classList.toggle('open');
+        };
+        var navLinks = document.querySelectorAll('.nav-menu a');
+        for (var i = 0; i < navLinks.length; i++) {
+            var link = navLinks[i];
+            link.onclick = function() {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('open');
+                }
+            };
+        }
+
+        var slides = document.querySelectorAll('.slide');
+        var dotsContainer = document.getElementById('heroDots');
+        var prevBtn = document.getElementById('prevBtn');
+        var nextBtn = document.getElementById('nextBtn');
+        var currentIndex = 0;
+        var totalSlides = slides.length;
+        var autoSlideInterval;
+
+        function goToSlide(index) {
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            slides[index].classList.add('active');
+            currentIndex = index;
+            updateDots();
+        }
+
+        function nextSlide() {
+            var newIndex = (currentIndex + 1) % totalSlides;
+            goToSlide(newIndex);
+        }
+
+        function prevSlide() {
+            var newIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            goToSlide(newIndex);
+        }
+
+        function updateDots() {
+            var dots = document.querySelectorAll('.hero-dots .dot');
+            for (var i = 0; i < dots.length; i++) {
+                if (i === currentIndex) {
+                    dots[i].classList.add('active');
+                } else {
+                    dots[i].classList.remove('active');
+                }
+            }
+        }
+
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            for (var i = 0; i < totalSlides; i++) {
+                var dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) {
+                    dot.classList.add('active');
+                }
+                dot.setAttribute('data-index', i);
+                dot.onclick = function() {
+                    var index = parseInt(this.getAttribute('data-index'));
+                    goToSlide(index);
+                    resetAutoSlide();
+                };
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        prevBtn.onclick = function() {
+            prevSlide();
+            resetAutoSlide();
+        };
+        nextBtn.onclick = function() {
+            nextSlide();
+            resetAutoSlide();
+        };
+        createDots();
+        goToSlide(0);
+        startAutoSlide();
+        var heroSlider = document.getElementById('heroSlider');
+        heroSlider.onmouseenter = function() {
+            clearInterval(autoSlideInterval);
+        };
+        heroSlider.onmouseleave = function() {
+            startAutoSlide();
+        };
+
+        // 15 product quantities
+        var c1 = 0,
+            c2 = 0,
+            c3 = 0,
+            c4 = 0,
+            c5 = 0;
+        var c6 = 0,
+            c7 = 0,
+            c8 = 0,
+            c9 = 0,
+            c10 = 0;
+        var c11 = 0,
+            c12 = 0,
+            c13 = 0,
+            c14 = 0,
+            c15 = 0;
+
+        function getProductData(id) {
+            if (id === 1) {
+                return { name: "Wooden Train Set", price: 27.99, image: "https://images.pexels.com/photos/3674878/wooden-toy-train.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 2) {
+                return { name: "Coding Robot Kit", price: 54.99, image: "https://images.pexels.com/photos/8386147/coding-robot-toy.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 3) {
+                return { name: "Space Rocket LEGO Set", price: 59.99, image: "https://images.pexels.com/photos/4145354/lego-space-shuttle.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 4) {
+                return { name: "Plush Unicorn", price: 14.99, image: "https://images.pexels.com/photos/874640/plush-toy-unicorn-soft-874640.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 5) {
+                return { name: "Magnetic Building Tiles", price: 39.99, image: "https://images.pexels.com/photos/8386162/magnetic-tiles.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 6) {
+                return { name: "Puzzle Globe", price: 29.99, image: "https://images.pexels.com/photos/6169647/educational-puzzle-globe.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 7) {
+                return { name: "Barbie Fashion Doll", price: 21.99, image: "https://images.pexels.com/photos/6113172/toy-store-shelves-with-colorful-plastic-toys.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 8) {
+                return { name: "Remote Control Car", price: 34.99, image: "https://images.pexels.com/photos/674016/rc-car-toy-remote-674016.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 9) {
+                return { name: "Dinosaur Playset", price: 23.99, image: "https://images.pexels.com/photos/1095605/children-playing-dinosaur-toys.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 10) {
+                return { name: "Art Easel Studio", price: 49.99, image: "https://images.pexels.com/photos/4855636/child-drawing-on-easel.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 11) {
+                return { name: "Baby Activity Cube", price: 22.99, image: "https://images.pexels.com/photos/3662635/activity-cube-baby-toys.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 12) {
+                return { name: "Play Dough Mega Set", price: 25.99, image: "https://images.pexels.com/photos/5871482/play-dough-creative-kit.jpg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" };
+            }
+            if (id === 13) {
+                return { name: "Balance Board", price: 44.99, image: "https://m.media-amazon.com/images/I/71Uy6+pxSKL._AC_SL1500_.jpg" };
+            }
+            if (id === 14) {
+                return { name: "Memory Card Game", price: 12.99, image: "https://i0.wp.com/mcusercontent.com/21ab45285a43248c52473f8e6/images/da4b7c04-027b-4033-a2d3-68c372c94299.jpeg?ssl=1" };
+            }
+            if (id === 15) {
+                return { name: "Musical Drum Pad", price: 32.99, image: "https://m.media-amazon.com/images/I/81M9+wmHTaL._AC_SL1500_.jpg" };
+            }
+            return null;
+        }
+
+        function updateCartBadge() {
+            var totalItems = c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10 + c11 + c12 + c13 + c14 + c15;
+            document.getElementById('cartBadge').innerText = totalItems;
+            document.getElementById('cartTotalItems').innerText = totalItems;
+        }
+
+        function updateCartButtons() {
+            var btns = document.querySelectorAll('.btn-cart');
+            for (var i = 0; i < btns.length; i++) {
+                var btn = btns[i];
+                var id = parseInt(btn.getAttribute('data-id'));
+                var qty = 0;
+                if (id === 1) qty = c1;
+                else if (id === 2) qty = c2;
+                else if (id === 3) qty = c3;
+                else if (id === 4) qty = c4;
+                else if (id === 5) qty = c5;
+                else if (id === 6) qty = c6;
+                else if (id === 7) qty = c7;
+                else if (id === 8) qty = c8;
+                else if (id === 9) qty = c9;
+                else if (id === 10) qty = c10;
+                else if (id === 11) qty = c11;
+                else if (id === 12) qty = c12;
+                else if (id === 13) qty = c13;
+                else if (id === 14) qty = c14;
+                else if (id === 15) qty = c15;
+
+                if (qty > 0) {
+                    btn.classList.add('in-cart');
+                    btn.innerText = 'Remove from Cart';
+                } else {
+                    btn.classList.remove('in-cart');
+                    btn.innerText = 'Add to Cart';
+                }
+            }
+        }
+
+        function updateCartUI() {
+            var container = document.getElementById('cartItemsList');
+            var total = 0;
+            var html = '';
+
+            if (c1 > 0) {
+                var p = getProductData(1);
+                total += p.price * c1;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="1" data-delta="-1">-</button><span>' + c1 + '</span><button class="qty-btn" data-id="1" data-delta="1">+</button><button class="cart-item-remove" data-id="1"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c2 > 0) {
+                var p = getProductData(2);
+                total += p.price * c2;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="2" data-delta="-1">-</button><span>' + c2 + '</span><button class="qty-btn" data-id="2" data-delta="1">+</button><button class="cart-item-remove" data-id="2"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c3 > 0) {
+                var p = getProductData(3);
+                total += p.price * c3;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="3" data-delta="-1">-</button><span>' + c3 + '</span><button class="qty-btn" data-id="3" data-delta="1">+</button><button class="cart-item-remove" data-id="3"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c4 > 0) {
+                var p = getProductData(4);
+                total += p.price * c4;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="4" data-delta="-1">-</button><span>' + c4 + '</span><button class="qty-btn" data-id="4" data-delta="1">+</button><button class="cart-item-remove" data-id="4"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c5 > 0) {
+                var p = getProductData(5);
+                total += p.price * c5;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="5" data-delta="-1">-</button><span>' + c5 + '</span><button class="qty-btn" data-id="5" data-delta="1">+</button><button class="cart-item-remove" data-id="5"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c6 > 0) {
+                var p = getProductData(6);
+                total += p.price * c6;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="6" data-delta="-1">-</button><span>' + c6 + '</span><button class="qty-btn" data-id="6" data-delta="1">+</button><button class="cart-item-remove" data-id="6"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c7 > 0) {
+                var p = getProductData(7);
+                total += p.price * c7;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="7" data-delta="-1">-</button><span>' + c7 + '</span><button class="qty-btn" data-id="7" data-delta="1">+</button><button class="cart-item-remove" data-id="7"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c8 > 0) {
+                var p = getProductData(8);
+                total += p.price * c8;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="8" data-delta="-1">-</button><span>' + c8 + '</span><button class="qty-btn" data-id="8" data-delta="1">+</button><button class="cart-item-remove" data-id="8"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c9 > 0) {
+                var p = getProductData(9);
+                total += p.price * c9;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="9" data-delta="-1">-</button><span>' + c9 + '</span><button class="qty-btn" data-id="9" data-delta="1">+</button><button class="cart-item-remove" data-id="9"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c10 > 0) {
+                var p = getProductData(10);
+                total += p.price * c10;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="10" data-delta="-1">-</button><span>' + c10 + '</span><button class="qty-btn" data-id="10" data-delta="1">+</button><button class="cart-item-remove" data-id="10"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c11 > 0) {
+                var p = getProductData(11);
+                total += p.price * c11;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="11" data-delta="-1">-</button><span>' + c11 + '</span><button class="qty-btn" data-id="11" data-delta="1">+</button><button class="cart-item-remove" data-id="11"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c12 > 0) {
+                var p = getProductData(12);
+                total += p.price * c12;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="12" data-delta="-1">-</button><span>' + c12 + '</span><button class="qty-btn" data-id="12" data-delta="1">+</button><button class="cart-item-remove" data-id="12"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c13 > 0) {
+                var p = getProductData(13);
+                total += p.price * c13;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="13" data-delta="-1">-</button><span>' + c13 + '</span><button class="qty-btn" data-id="13" data-delta="1">+</button><button class="cart-item-remove" data-id="13"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c14 > 0) {
+                var p = getProductData(14);
+                total += p.price * c14;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="14" data-delta="-1">-</button><span>' + c14 + '</span><button class="qty-btn" data-id="14" data-delta="1">+</button><button class="cart-item-remove" data-id="14"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+            if (c15 > 0) {
+                var p = getProductData(15);
+                total += p.price * c15;
+                html += '<div class="cart-item"><img class="cart-item-img" src="' + p.image + '" alt="' + p.name + '"><div class="cart-item-info"><div class="cart-item-name">' + p.name + '</div><div class="cart-item-price">$' + p.price.toFixed(2) + '</div><div class="cart-item-qty"><button class="qty-btn" data-id="15" data-delta="-1">-</button><span>' + c15 + '</span><button class="qty-btn" data-id="15" data-delta="1">+</button><button class="cart-item-remove" data-id="15"><i class="fa-regular fa-trash-can"></i></button></div></div></div>';
+            }
+
+            if (html === '') {
+                html = '<div class="cart-empty"><i class="fa-regular fa-face-smile"></i>Your cart is empty<br><span style="font-size:14px; color:#ccc;">Start adding some toys!</span></div>';
+            }
+
+            container.innerHTML = html;
+            document.getElementById('cartTotalPrice').innerText = '$' + total.toFixed(2);
+
+            var qtyBtns = document.querySelectorAll('.qty-btn');
+            for (var j = 0; j < qtyBtns.length; j++) {
+                var btn = qtyBtns[j];
+                btn.onclick = function() {
+                    var id = parseInt(this.getAttribute('data-id'));
+                    var delta = parseInt(this.getAttribute('data-delta'));
+                    changeQuantity(id, delta);
+                };
+            }
+
+            var removeBtns = document.querySelectorAll('.cart-item-remove');
+            for (var k = 0; k < removeBtns.length; k++) {
+                var btn = removeBtns[k];
+                btn.onclick = function() {
+                    var id = parseInt(this.getAttribute('data-id'));
+                    setQuantity(id, 0);
+                };
+            }
+
+            updateCartBadge();
+            updateCartButtons();
+        }
+
+        function changeQuantity(id, delta) {
+            if (id === 1) {
+                var n = c1 + delta;
+                if (n < 0) n = 0;
+                c1 = n;
+            } else if (id === 2) {
+                var n = c2 + delta;
+                if (n < 0) n = 0;
+                c2 = n;
+            } else if (id === 3) {
+                var n = c3 + delta;
+                if (n < 0) n = 0;
+                c3 = n;
+            } else if (id === 4) {
+                var n = c4 + delta;
+                if (n < 0) n = 0;
+                c4 = n;
+            } else if (id === 5) {
+                var n = c5 + delta;
+                if (n < 0) n = 0;
+                c5 = n;
+            } else if (id === 6) {
+                var n = c6 + delta;
+                if (n < 0) n = 0;
+                c6 = n;
+            } else if (id === 7) {
+                var n = c7 + delta;
+                if (n < 0) n = 0;
+                c7 = n;
+            } else if (id === 8) {
+                var n = c8 + delta;
+                if (n < 0) n = 0;
+                c8 = n;
+            } else if (id === 9) {
+                var n = c9 + delta;
+                if (n < 0) n = 0;
+                c9 = n;
+            } else if (id === 10) {
+                var n = c10 + delta;
+                if (n < 0) n = 0;
+                c10 = n;
+            } else if (id === 11) {
+                var n = c11 + delta;
+                if (n < 0) n = 0;
+                c11 = n;
+            } else if (id === 12) {
+                var n = c12 + delta;
+                if (n < 0) n = 0;
+                c12 = n;
+            } else if (id === 13) {
+                var n = c13 + delta;
+                if (n < 0) n = 0;
+                c13 = n;
+            } else if (id === 14) {
+                var n = c14 + delta;
+                if (n < 0) n = 0;
+                c14 = n;
+            } else if (id === 15) {
+                var n = c15 + delta;
+                if (n < 0) n = 0;
+                c15 = n;
+            }
+            updateCartUI();
+        }
+
+        function setQuantity(id, val) {
+            if (id === 1) c1 = val;
+            else if (id === 2) c2 = val;
+            else if (id === 3) c3 = val;
+            else if (id === 4) c4 = val;
+            else if (id === 5) c5 = val;
+            else if (id === 6) c6 = val;
+            else if (id === 7) c7 = val;
+            else if (id === 8) c8 = val;
+            else if (id === 9) c9 = val;
+            else if (id === 10) c10 = val;
+            else if (id === 11) c11 = val;
+            else if (id === 12) c12 = val;
+            else if (id === 13) c13 = val;
+            else if (id === 14) c14 = val;
+            else if (id === 15) c15 = val;
+            updateCartUI();
+        }
+
+        function toggleCart(id) {
+            var qty = 0;
+            if (id === 1) qty = c1;
+            else if (id === 2) qty = c2;
+            else if (id === 3) qty = c3;
+            else if (id === 4) qty = c4;
+            else if (id === 5) qty = c5;
+            else if (id === 6) qty = c6;
+            else if (id === 7) qty = c7;
+            else if (id === 8) qty = c8;
+            else if (id === 9) qty = c9;
+            else if (id === 10) qty = c10;
+            else if (id === 11) qty = c11;
+            else if (id === 12) qty = c12;
+            else if (id === 13) qty = c13;
+            else if (id === 14) qty = c14;
+            else if (id === 15) qty = c15;
+
+            if (qty > 0) {
+                setQuantity(id, 0);
+            } else {
+                addToCart(id);
+            }
+        }
+
+        function addToCart(id) {
+            if (id === 1) c1++;
+            else if (id === 2) c2++;
+            else if (id === 3) c3++;
+            else if (id === 4) c4++;
+            else if (id === 5) c5++;
+            else if (id === 6) c6++;
+            else if (id === 7) c7++;
+            else if (id === 8) c8++;
+            else if (id === 9) c9++;
+            else if (id === 10) c10++;
+            else if (id === 11) c11++;
+            else if (id === 12) c12++;
+            else if (id === 13) c13++;
+            else if (id === 14) c14++;
+            else if (id === 15) c15++;
+            updateCartUI();
+        }
+
+        var cartBtns = document.querySelectorAll('.btn-cart');
+        for (var l = 0; l < cartBtns.length; l++) {
+            var btn = cartBtns[l];
+            btn.onclick = function(e) {
+                e.stopPropagation();
+                var id = parseInt(this.getAttribute('data-id'));
+                toggleCart(id);
+            };
+        }
+
+        var compareList = [];
+
+        function toggleCompare(id) {
+            var index = compareList.indexOf(id);
+            if (index > -1) {
+                compareList.splice(index, 1);
+            } else {
+                if (compareList.length >= 4) {
+                    alert('You can compare up to 4 products only.');
+                    return;
+                }
+                compareList.push(id);
+            }
+            updateCompareUI();
+        }
+
+        function updateCompareUI() {
+            var container = document.getElementById('compareList');
+            var chips = '';
+
+            for (var i = 0; i < compareList.length; i++) {
+                var id = compareList[i];
+                var p = getProductData(id);
+                if (p) {
+                    chips += '<div class="compare-chip">' + p.name + ' <button class="remove-compare" data-id="' + id + '">✖</button></div>';
+                }
+            }
+
+            if (chips === '') {
+                container.innerHTML = '<span class="compare-empty">No products selected for comparison</span>';
+            } else {
+                container.innerHTML = chips;
+            }
+
+            var removeBtns = document.querySelectorAll('.remove-compare');
+            for (var j = 0; j < removeBtns.length; j++) {
+                var btn = removeBtns[j];
+                btn.onclick = function() {
+                    var id = parseInt(this.getAttribute('data-id'));
+                    toggleCompare(id);
+                };
+            }
+
+            var compareBtns = document.querySelectorAll('.btn-compare');
+            for (var k = 0; k < compareBtns.length; k++) {
+                var btn = compareBtns[k];
+                var id = parseInt(btn.getAttribute('data-id'));
+                if (compareList.indexOf(id) > -1) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            }
+        }
+
+        function showCompareModal() {
+            if (compareList.length < 2) {
+                alert('Please select at least 2 products to compare.');
+                return;
+            }
+            var products = [];
+            for (var i = 0; i < compareList.length; i++) {
+                var p = getProductData(compareList[i]);
+                if (p) products.push(p);
+            }
+            var html = '<table class="compare-table">';
+            html += '<thead><tr><th>Feature</th>';
+            for (var i = 0; i < products.length; i++) {
+                html += '<th>' + products[i].name + '</th>';
+            }
+            html += '</tr></thead><tbody>';
+            html += '<tr><td><strong>Price</strong></td>';
+            for (var i = 0; i < products.length; i++) {
+                html += '<td>$' + products[i].price.toFixed(2) + '</td>';
+            }
+            html += '</tr>';
+            html += '<tr><td><strong>Image</strong></td>';
+            for (var i = 0; i < products.length; i++) {
+                html += '<td><img src="' + products[i].image + '" alt="' + products[i].name + '"></td>';
+            }
+            html += '</tr>';
+            html += '</tbody></table>';
+            document.getElementById('compareTableContainer').innerHTML = html;
+            document.getElementById('compareModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCompareModal() {
+            document.getElementById('compareModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('compareNowBtn').onclick = showCompareModal;
+        document.getElementById('clearCompareBtn').onclick = function() {
+            compareList = [];
+            updateCompareUI();
+        };
+        document.getElementById('compareModalClose').onclick = closeCompareModal;
+        document.getElementById('compareModal').onclick = function(e) {
+            if (e.target === this) closeCompareModal();
+        };
+
+        var compareBtns = document.querySelectorAll('.btn-compare');
+        for (var m = 0; m < compareBtns.length; m++) {
+            var btn = compareBtns[m];
+            btn.onclick = function(e) {
+                e.stopPropagation();
+                var id = parseInt(this.getAttribute('data-id'));
+                toggleCompare(id);
+            };
+        }
+
+        document.getElementById('cartIconBtn').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('cartSidebar').classList.add('open');
+            document.getElementById('cartOverlay').classList.add('active');
+        };
+        document.getElementById('closeCartBtn').onclick = function() {
+            document.getElementById('cartSidebar').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('active');
+        };
+        document.getElementById('cartOverlay').onclick = function() {
+            document.getElementById('cartSidebar').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('active');
+        };
+        document.getElementById('checkoutBtn').onclick = function() {
+            var totalItems = c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10 + c11 + c12 + c13 + c14 + c15;
+            if (totalItems === 0) {
+                alert('Your cart is empty! 🧸');
+            } else {
+                var total = document.getElementById('cartTotalPrice').innerText;
+                alert('🎉 Thank you for your order!\nTotal: ' + total + '\nWe\'ll ship it soon!');
+            }
+        };
+
+        var newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.onsubmit = function(e) {
+            e.preventDefault();
+            var input = this.querySelector('input');
+            if (input.value.trim() === '') {
+                alert('Please enter your email address.');
+                return false;
+            }
+            alert('🎉 Thank you for subscribing! You\'ll hear from us soon.');
+            input.value = '';
+            return false;
+        };
+
+        updateCartUI();
+        updateCompareUI();
+        updateCartBadge();
+        updateCartButtons();
+    </script>
+
+</body>
+</html>

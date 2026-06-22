@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toyo Toys – Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fef7f0;
+            color: #1e2a32;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 14px 0;
+            border-bottom: 2px solid #ffe5d0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #e05a2a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 26px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e2f;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.2s;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #e05a2a;
+            border-bottom-color: #e05a2a;
+        }
+
+        .nav-links .cart-link {
+            position: relative;
+            font-size: 20px;
+            border-bottom: none;
+        }
+
+        .nav-links .cart-link .badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #e05a2a;
+            color: #fff;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: #2c3e2f;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #e05a2a, #f4b942);
+            padding: 60px 0 50px;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 50px;
+        }
+
+        .page-hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 0 0 50px 0;
+        }
+
+        .contact-form-wrapper {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid #ffe5d0;
+        }
+
+        .contact-form-wrapper h2 {
+            font-size: 26px;
+            color: #1e2a32;
+            margin-bottom: 6px;
+        }
+
+        .contact-form-wrapper .sub-text {
+            color: #888;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #2c3e2f;
+        }
+
+        .form-group label .required {
+            color: #e05a2a;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #f0e8e0;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: 0.25s;
+            background: #fefbf8;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #e05a2a;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(224, 90, 42, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .submit-btn {
+            background: #e05a2a;
+            color: #fff;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #c54518;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(224, 90, 42, 0.3);
+        }
+
+        .submit-btn i {
+            font-size: 18px;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 18px 22px;
+            border-radius: 12px;
+            border-left: 5px solid #28a745;
+            margin-top: 18px;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .contact-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 28px 32px;
+            border-radius: 20px;
+            border: 1px solid #ffe5d0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            transition: 0.2s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .info-card .icon-box {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            background: #fef0e8;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e05a2a;
+            font-size: 22px;
+        }
+
+        .info-card .info-content h4 {
+            font-size: 17px;
+            margin-bottom: 4px;
+            color: #1e2a32;
+        }
+
+        .info-card .info-content p {
+            color: #666;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .info-card .info-content a {
+            color: #e05a2a;
+            text-decoration: none;
+        }
+
+        .info-card .info-content a:hover {
+            text-decoration: underline;
+        }
+
+        .social-card {
+            background: #fff;
+            padding: 28px 32px;
+            border-radius: 20px;
+            border: 1px solid #ffe5d0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .social-card h4 {
+            font-size: 17px;
+            margin-bottom: 16px;
+            color: #1e2a32;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: #f5ede8;
+            color: #2c3e2f;
+            font-size: 20px;
+            transition: 0.25s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: #e05a2a;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(224, 90, 42, 0.25);
+        }
+
+        .map-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #ffe5d0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .map-card iframe {
+            width: 100%;
+            height: 220px;
+            border: none;
+            display: block;
+        }
+
+        .footer {
+            background: #241f1a;
+            color: #ecd9ca;
+            padding: 45px 0 25px;
+            margin-top: 20px;
+        }
+
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 35px;
+        }
+
+        .footer-col h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #ecd9ca;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: #f4b942;
+        }
+
+        .footer .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3a322c;
+            color: #ecd9ca;
+            text-decoration: none;
+            transition: 0.25s;
+            font-size: 17px;
+        }
+
+        .footer .social-icons a:hover {
+            background: #e05a2a;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #3a322c;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 992px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 15px 0 5px;
+                gap: 12px;
+                border-top: 1px solid #ffe5d0;
+                margin-top: 12px;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .page-hero h1 {
+                font-size: 30px;
+            }
+            .page-hero {
+                padding: 40px 0 30px;
+            }
+            .contact-form-wrapper {
+                padding: 25px 20px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .info-card {
+                padding: 20px;
+            }
+            .social-card {
+                padding: 20px;
+            }
+            .footer .container {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+            .logo {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 24px;
+            }
+            .page-hero p {
+                font-size: 15px;
+            }
+            .contact-form-wrapper h2 {
+                font-size: 21px;
+            }
+            .info-card .icon-box {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                font-size: 18px;
+            }
+            .footer .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer .social-icons {
+                justify-content: center;
+            }
+            .logo {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-rocket"></i> Toyo Toys
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="category.html">Category</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li class="cart-link">
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <h1>📬 Get in Touch</h1>
+            <p>We'd love to hear from you! Whether you have a question about our toys, need help with an order, or just want to say hello — reach out anytime.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="contact-section">
+            
+            <div class="contact-form-wrapper">
+                <h2>Send us a Message</h2>
+                <p class="sub-text">Fill in the form below and we'll get back to you within 24 hours.</p>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name <span class="required">*</span></label>
+                            <input type="text" placeholder="e.g. Ali Hassan" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" placeholder="you@example.com" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <select>
+                            <option>General Inquiry</option>
+                            <option>Order Issue</option>
+                            <option>Product Recommendation</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message <span class="required">*</span></label>
+                        <textarea placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fa-regular fa-paper-plane"></i> Send Message
+                    </button>
+                    <div class="success-message" id="contactSuccess">✅ Thank you! Your message has been sent.</div>
+                </form>
+            </div>
+
+            
+            <div class="contact-info-wrapper">
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-regular fa-phone"></i></div>
+                    <div class="info-content">
+                        <h4>Call Us</h4>
+                        <p><a href="tel:+923085449935">+92 308 5449935</a><br />Mon–Sat, 9am – 8pm</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="info-content">
+                        <h4>Email Us</h4>
+                        <p><a href="mailto:hello@toyotoys.com">hello@toyotoys.com</a><br />We reply within 24 hours</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-regular fa-location-dot"></i></div>
+                    <div class="info-content">
+                        <h4>Visit Us</h4>
+                        <p>Star Gate, Karachi, Pakistan</p>
+                    </div>
+                </div>
+
+                <div class="social-card">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="map-card">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14479.987654321!2d67.0011!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e066e5c7a8b%3A0x8b9f3c5c8e3f1d6a!2sKarachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1617800000000" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>Toyo Toys</h4>
+                <p>Premium toys that spark imagination and learning for every age.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Returns &amp; Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Toyo Toys – Where imagination meets quality.</p>
+        </div>
+    </footer>
+     
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').classList.add('show');
+            setTimeout(function() {
+                document.getElementById('contactSuccess').classList.remove('show');
+            }, 3000);
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>

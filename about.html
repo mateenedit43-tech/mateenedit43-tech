@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toyo Toys – About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fef7f0;
+            color: #1e2a32;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 14px 0;
+            border-bottom: 2px solid #ffe5d0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #e05a2a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 26px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 26px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e2f;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.2s;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #e05a2a;
+            border-bottom-color: #e05a2a;
+        }
+
+        .nav-links a.active {
+            color: #e05a2a;
+            border-bottom-color: #e05a2a;
+        }
+
+        .nav-links .cart-link {
+            position: relative;
+            font-size: 20px;
+        }
+
+        .cart-link .badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #e05a2a;
+            color: #fff;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: #2c3e2f;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #e05a2a, #f4b942);
+            padding: 60px 0 50px;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 50px;
+        }
+
+        .page-hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin: 0 0 50px 0;
+        }
+
+        .about-story .text h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e2a32;
+            margin-bottom: 14px;
+        }
+
+        .about-story .text h2 span {
+            color: #e05a2a;
+        }
+
+        .about-story .text p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-story .text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-story .image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-story .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 320px;
+            background: #f0e8e0;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 0 0 50px 0;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid #ffe5d0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+        }
+
+        .stat-card .number {
+            font-size: 38px;
+            font-weight: 800;
+            color: #e05a2a;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 15px;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .stat-card .icon {
+            font-size: 32px;
+            color: #f4b942;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .team-section {
+            margin: 0 0 50px 0;
+        }
+
+        .team-section .section-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .team-section .section-sub {
+            text-align: center;
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 28px;
+        }
+
+        .team-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 28px 20px 24px;
+            text-align: center;
+            border: 1px solid #ffe5d0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        .team-card .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 12px;
+            border: 3px solid #ffe0cd;
+            display: block;
+            background: #f5ede8;
+        }
+
+        .team-card .name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e2a32;
+        }
+
+        .team-card .role {
+            font-size: 14px;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .team-card .bio {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .values-section {
+            background: #fff;
+            border-radius: 28px;
+            padding: 50px 40px;
+            margin: 0 0 50px 0;
+            border: 1px solid #ffe5d0;
+        }
+
+        .values-section .section-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .values-section .section-sub {
+            text-align: center;
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 28px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 16px 10px;
+        }
+
+        .value-item .icon-box {
+            width: 64px;
+            height: 64px;
+            background: #fef0e8;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 28px;
+            color: #e05a2a;
+        }
+
+        .value-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e2a32;
+            margin-bottom: 4px;
+        }
+
+        .value-item p {
+            font-size: 14px;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #e05a2a, #f4b942);
+            border-radius: 28px;
+            padding: 50px 40px;
+            margin: 0 0 50px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .cta-section p {
+            font-size: 17px;
+            opacity: 0.92;
+            max-width: 550px;
+            margin: 0 auto 24px;
+        }
+
+        .cta-section .btn-cta {
+            background: #fff;
+            color: #e05a2a;
+            padding: 14px 42px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.25s;
+        }
+
+        .cta-section .btn-cta:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer {
+            background: #241f1a;
+            color: #ecd9ca;
+            padding: 45px 0 25px;
+            margin-top: 20px;
+        }
+
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 35px;
+        }
+
+        .footer-col h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #ecd9ca;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: #f4b942;
+        }
+
+        .footer .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3a322c;
+            color: #ecd9ca;
+            text-decoration: none;
+            transition: 0.25s;
+            font-size: 17px;
+        }
+
+        .footer .social-icons a:hover {
+            background: #e05a2a;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #3a322c;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 992px) {
+            .about-story {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .about-story .image img {
+                min-height: 240px;
+            }
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 15px 0 5px;
+                gap: 12px;
+                border-top: 1px solid #ffe5d0;
+                margin-top: 12px;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .page-hero h1 {
+                font-size: 30px;
+            }
+            .page-hero {
+                padding: 40px 0 30px;
+            }
+            .about-story .text h2 {
+                font-size: 26px;
+            }
+            .stats-section {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .stat-card {
+                padding: 22px 16px;
+            }
+            .stat-card .number {
+                font-size: 30px;
+            }
+            .values-section {
+                padding: 30px 20px;
+            }
+            .cta-section {
+                padding: 35px 24px;
+            }
+            .cta-section h2 {
+                font-size: 26px;
+            }
+            .footer .container {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 18px;
+            }
+            .team-card .avatar {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 24px;
+            }
+            .page-hero p {
+                font-size: 15px;
+            }
+            .stats-section {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .stat-card .number {
+                font-size: 26px;
+            }
+            .stat-card .label {
+                font-size: 13px;
+            }
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .value-item .icon-box {
+                width: 52px;
+                height: 52px;
+                font-size: 22px;
+            }
+            .value-item h4 {
+                font-size: 15px;
+            }
+            .value-item p {
+                font-size: 13px;
+            }
+            .cta-section h2 {
+                font-size: 22px;
+            }
+            .cta-section .btn-cta {
+                padding: 12px 28px;
+                font-size: 14px;
+            }
+            .footer .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer .social-icons {
+                justify-content: center;
+            }
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .team-card {
+                padding: 18px 12px 16px;
+            }
+            .team-card .avatar {
+                width: 60px;
+                height: 60px;
+            }
+            .team-card .name {
+                font-size: 15px;
+            }
+            .team-card .bio {
+                font-size: 12px;
+            }
+            .logo {
+                font-size: 20px;
+            }
+            .about-story .image img {
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-rocket"></i> Toyo Toys
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="category.html">Category</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="cart-link">
+                    <a href="#">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="badge">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>About Toyo Toys</h1>
+            <p>We believe every child deserves a childhood filled with wonder, creativity, and joy.</p>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <div class="about-story">
+            <div class="text">
+                <h2>Where <span>Imagination</span> Takes Flight</h2>
+                <p>
+                    Toyo Toys was born from a simple idea: that the best toys don't just entertain — they inspire.
+                    Founded in 2018 by a group of parents and educators who wanted more for their children,
+                    we set out to curate a collection of toys that spark curiosity, build skills, and create
+                    lasting memories.
+                </p>
+                <p>
+                    We travel the world to find the most innovative, sustainable, and beautifully designed toys.
+                    From classic wooden puzzles to cutting-edge STEM kits, every product in our store is
+                    chosen with care — because we know that the toys we give our children shape the way they
+                    see the world.
+                </p>
+                <p>
+                    Today, Toyo Toys is proud to be a trusted name for families everywhere. We're not just a
+                    toy store — we're a community of dreamers, builders, and believers in the power of play.
+                </p>
+            </div>
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&h=400&fit=crop" alt="Kids playing with toys" />
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <span class="icon"><i class="fa-regular fa-face-smile"></i></span>
+                <span class="number">12K+</span>
+                <span class="label">Happy Families</span>
+            </div>
+            <div class="stat-card">
+                <span class="icon"><i class="fa-regular fa-star"></i></span>
+                <span class="number">4.9</span>
+                <span class="label">Average Rating</span>
+            </div>
+            <div class="stat-card">
+                <span class="icon"><i class="fa-regular fa-globe"></i></span>
+                <span class="number">35+</span>
+                <span class="label">Countries Served</span>
+            </div>
+            <div class="stat-card">
+                <span class="icon"><i class="fa-regular fa-trophy"></i></span>
+                <span class="number">7</span>
+                <span class="label">Awards Won</span>
+            </div>
+        </div>
+
+        <div class="values-section">
+            <h2 class="section-title">Our Core Values</h2>
+            <p class="section-sub">The principles that guide everything we do</p>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="icon-box"><i class="fa-regular fa-heart"></i></div>
+                    <h4>Play with Purpose</h4>
+                    <p>Every toy we curate has a reason — to teach, to inspire, or to bring joy.</p>
+                </div>
+                <div class="value-item">
+                    <div class="icon-box"><i class="fa-regular fa-leaf"></i></div>
+                    <h4>Sustainable Choices</h4>
+                    <p>We prioritize eco-friendly materials and ethical production practices.</p>
+                </div>
+                <div class="value-item">
+                    <div class="icon-box"><i class="fa-regular fa-handshake"></i></div>
+                    <h4>Community First</h4>
+                    <p>We listen to our families and build a space where everyone belongs.</p>
+                </div>
+                <div class="value-item">
+                    <div class="icon-box"><i class="fa-regular fa-lightbulb"></i></div>
+                    <h4>Innovation Always</h4>
+                    <p>We're constantly exploring new ideas to make playtime more meaningful.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2 class="section-title">Meet the Team</h2>
+            <p class="section-sub">The passionate people behind Toyo Toys</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img class="avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah" />
+                    <div class="name">Sarah Mitchell</div>
+                    <div class="role">Founder &amp; CEO</div>
+                    <div class="bio">Mother of two, former teacher, and lifelong toy enthusiast.</div>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="https://randomuser.me/api/portraits/men/45.jpg" alt="James" />
+                    <div class="name">James Park</div>
+                    <div class="role">Head of Product</div>
+                    <div class="bio">Engineer turned toy curator. Loves building things with his kids.</div>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="https://randomuser.me/api/portraits/women/33.jpg" alt="Emma" />
+                    <div class="name">Emma Rivera</div>
+                    <div class="role">Customer Experience</div>
+                    <div class="bio">She makes sure every family feels heard and valued.</div>
+                </div>
+                <div class="team-card">
+                    <img class="avatar" src="https://randomuser.me/api/portraits/men/52.jpg" alt="David" />
+                    <div class="name">David Chen</div>
+                    <div class="role">Creative Director</div>
+                    <div class="bio">Designs our visual world. Believes toys are art too.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Explore?</h2>
+            <p>Come discover toys that will light up your child's imagination — and create moments you'll both treasure.</p>
+            <a href="category.html" class="btn-cta">Shop Our Collection</a>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>Toyo Toys</h4>
+                <p>Premium toys that spark imagination and learning for every age.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Returns &amp; Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Toyo Toys – Where imagination meets quality.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            var nav = document.getElementById('navLinks');
+            nav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            if (link.getAttribute('href') === 'about.html') {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

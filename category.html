@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toyo Toys – Products</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fef7f0;
+    color: #1e2a32;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    background: #ffffff;
+    padding: 15px 0;
+    border-bottom: 2px solid #ffe5d0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.header .container {
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: #e05a2a;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo i {
+    font-size: 28px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav-links a {
+   text-decoration: none;
+    color: #2c3e2f;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.2s;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover {
+    color: #e05a2a;
+    border-bottom-color: #e05a2a;
+}
+
+.nav-links a.active {
+    color: #e05a2a;
+    border-bottom-color: #e05a2a;
+}
+
+.nav-links .cart-link {
+    position: relative;
+    font-size: 20px;
+}
+
+.cart-link .badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: #e05a2a;
+    color: white;
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+     margin-right: 0;
+    padding-right: 0;
+}
+
+.header-actions a {
+    color: #2c3e2f;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.header-actions a:hover {
+    color: #e05a2a;
+}
+
+.cart-icon {
+    font-size: 22px;
+    cursor: pointer;
+    position: relative;
+     margin-right: 0;
+    padding-right: 0;
+}
+
+.cart-icon .badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: #e05a2a;
+    color: white;
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.page-banner {
+    background: linear-gradient(135deg, #e05a2a, #f4b942);
+    padding: 45px 0 40px;
+    text-align: center;
+    color: white;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 35px;
+}
+
+.page-banner h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.page-banner p {
+    font-size: 17px;
+    opacity: 0.92;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 10px 28px;
+    border: 2px solid #ffe0cd;
+    border-radius: 50px;
+    background: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.25s;
+    color: #2c3e2f;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    background: #f5ede5;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: #e05a2a;
+    color: white;
+    border-color: #e05a2a;
+    box-shadow: 0 4px 14px rgba(224, 90, 42, 0.3);
+}
+
+.compare-bar {
+    background: white;
+    border-radius: 60px;
+    padding: 14px 22px;
+    margin: 0 0 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border: 1px solid #ffe0cd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.compare-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.compare-chip {
+    background: #fcf6f0;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ffe0cd;
+}
+
+.compare-chip .remove-compare {
+    background: none;
+    border: none;
+    color: #e05a2a;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.compare-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.compare-actions button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: inherit;
+}
+
+.clear-compare {
+    background: #e9e5df;
+    color: #2c3e2f;
+}
+
+.clear-compare:hover {
+    background: #ddd8d0;
+}
+
+.compare-now {
+    background: #e05a2a;
+    color: white;
+}
+
+.compare-now:hover {
+    background: #c54518;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(224, 90, 42, 0.3);
+}
+
+.compare-empty {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 28px;
+    margin-bottom: 50px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #ffe5d0;
+    transition: 0.3s;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    border-color: #e05a2a;
+}
+
+.product-card.hidden {
+    display: none;
+}
+
+.product-img {
+    height: 220px;
+    position: relative;
+    background: #faf3ec;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.04);
+}
+
+.discount-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: #e05a2a;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.featured-tag {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: #f4b942;
+    color: #1e2a32;
+    padding: 4px 14px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.product-info {
+    padding: 18px 18px 20px;
+}
+
+.product-category {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.product-name {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 4px 0 6px;
+    color: #1e2a32;
+    line-height: 1.3;
+}
+
+.product-rating {
+    color: #f4b942;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.product-rating span {
+    color: #999;
+    font-size: 12px;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: 800;
+    color: #e05a2a;
+    margin: 6px 0 12px;
+}
+
+.product-price .old {
+    font-size: 15px;
+    font-weight: 400;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.product-actions button {
+    flex: 1;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.25s;
+    font-family: inherit;
+}
+
+.btn-cart {
+    background: #e05a2a;
+    color: white;
+}
+
+.btn-cart:hover {
+    background: #c54518;
+    transform: scale(1.02);
+}
+
+.btn-cart.added {
+    background: #28a745;
+}
+
+.btn-compare {
+    background: #f0ede8;
+    color: #2c3e2f;
+    flex: 0.6;
+    font-size: 13px;
+}
+
+.btn-compare:hover {
+    background: #e0dcd6;
+}
+
+.btn-compare.active {
+    background: #e05a2a;
+    color: white;
+}
+
+.btn-quickview {
+    background: #f0ede8;
+    color: #2c3e2f;
+    flex: 0.4;
+    font-size: 16px;
+}
+
+.btn-quickview:hover {
+    background: #e0dcd6;
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 199;
+    display: none;
+}
+
+.cart-overlay.active {
+    display: block;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 400px;
+    height: 100%;
+    background: white;
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.12);
+    z-index: 200;
+    transition: right 0.35s ease;
+    padding: 25px 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ffe5d0;
+    padding-bottom: 16px;
+}
+
+.cart-header h3 {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1e2a32;
+}
+
+.cart-header h3 span {
+    background: #e05a2a;
+    color: white;
+    font-size: 14px;
+    padding: 2px 12px;
+    border-radius: 30px;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #999;
+    transition: 0.2s;
+    line-height: 1;
+}
+
+.close-cart:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+.cart-items-list {
+    flex: 1;
+    overflow-y: auto;
+    margin: 18px 0 15px;
+    padding-right: 5px;
+}
+
+.cart-items-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cart-items-list::-webkit-scrollbar-thumb {
+    background: #e0dcd6;
+    border-radius: 10px;
+}
+
+.cart-empty {
+    text-align: center;
+    color: #999;
+    padding: 50px 0;
+    font-size: 16px;
+}
+
+.cart-empty i {
+    font-size: 50px;
+    display: block;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.cart-item {
+    display: flex;
+    gap: 14px;
+    border-bottom: 1px solid #f0e8e0;
+    padding: 14px 0;
+    align-items: center;
+}
+
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #f5f0ea;
+    flex-shrink: 0;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #1e2a32;
+}
+
+.cart-item-price {
+    color: #e05a2a;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.cart-item-qty button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: #f0ede8;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    transition: 0.2s;
+    color: #1e2a32;
+}
+
+.cart-item-qty button:hover {
+    background: #e0dcd6;
+}
+
+.cart-item-qty span {
+    font-weight: 700;
+    min-width: 24px;
+    text-align: center;
+    font-size: 16px;
+    color: #1e2a32;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+    padding: 0 5px;
+}
+
+.cart-item-remove:hover {
+    color: #e05a2a;
+}
+
+.cart-footer {
+    border-top: 2px solid #ffe5d0;
+    padding-top: 18px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: #1e2a32;
+}
+
+.cart-total span:last-child {
+    color: #e05a2a;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 14px;
+    background: #e05a2a;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.checkout-btn:hover {
+    background: #c54518;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(224, 90, 42, 0.3);
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 24px;
+    padding: 30px 35px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalFade 0.3s ease;
+}
+
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #999;
+    transition: 0.2s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    margin-top: 10px;
+}
+
+.modal-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #f5f0ea;
+}
+
+.modal-details h2 {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.modal-details .cat {
+    font-size: 13px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.modal-details .price-big {
+    font-size: 28px;
+    font-weight: 800;
+    color: #e05a2a;
+    margin: 10px 0 14px;
+}
+
+.modal-details .price-big .old {
+    font-size: 18px;
+    font-weight: 400;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 12px;
+}
+
+.modal-details .desc {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 18px;
+    line-height: 1.7;
+}
+
+.modal-details .stock {
+    font-size: 14px;
+    color: #28a745;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.modal-details .stock.out {
+    color: #dc3545;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-actions button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.25s;
+    font-family: inherit;
+}
+
+.modal-actions .btn-cart-modal {
+    background: #e05a2a;
+    color: white;
+    flex: 1;
+}
+
+.modal-actions .btn-cart-modal:hover {
+    background: #c54518;
+}
+
+.modal-actions .btn-close-modal {
+    background: #f0ede8;
+    color: #2c3e2f;
+    padding: 12px 24px;
+}
+
+.modal-actions .btn-close-modal:hover {
+    background: #e0dcd6;
+}
+
+.compare-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 400;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.compare-modal-overlay.active {
+    display: flex;
+}
+
+.compare-modal-content {
+    background: white;
+    max-width: 1000px;
+    width: 95%;
+    border-radius: 24px;
+    padding: 30px 35px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalFade 0.3s ease;
+}
+
+.compare-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #999;
+    transition: 0.2s;
+    line-height: 1;
+}
+
+.compare-modal-close:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.compare-table th,
+.compare-table td {
+    border-bottom: 1px solid #edd9ca;
+    padding: 14px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.compare-table th {
+    background: #fcf6f0;
+    font-weight: 700;
+    color: #2c3e2f;
+}
+
+.compare-table td img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.compare-table .no-product {
+    color: #ccc;
+    font-style: italic;
+}
+
+.compare-table .compare-name {
+    font-weight: 700;
+}
+
+.footer {
+            background: #241f1a;
+            color: #ecd9ca;
+            padding: 45px 0 25px;
+            margin-top: 20px;
+        }
+
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 35px;
+        }
+
+        .footer-col h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #ecd9ca;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: #f4b942;
+        }
+
+        .footer .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3a322c;
+            color: #ecd9ca;
+            text-decoration: none;
+            transition: 0.25s;
+            font-size: 17px;
+        }
+
+        .footer .social-icons a:hover {
+            background: #e05a2a;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #3a322c;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+
+@media (max-width: 992px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .modal-img {
+        height: 240px;
+    }
+    .compare-modal-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 18px;
+    }
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+        padding: 18px 16px;
+    }
+    .page-banner h1 {
+        font-size: 28px;
+    }
+    .page-banner {
+        padding: 30px 0 25px;
+    }
+    .filter-btn {
+        padding: 7px 18px;
+        font-size: 13px;
+    }
+    .compare-bar {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 30px;
+        padding: 16px;
+    }
+    .compare-actions {
+        justify-content: center;
+    }
+    .compare-table td img {
+        width: 60px;
+        height: 60px;
+    }
+    .compare-table th,
+    .compare-table td {
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    .product-img {
+        height: 150px;
+    }
+    .product-info {
+        padding: 12px 12px 16px;
+    }
+    .product-name {
+        font-size: 14px;
+    }
+    .product-price {
+        font-size: 16px;
+    }
+    .product-actions button {
+        font-size: 11px;
+        padding: 7px 6px;
+    }
+    .btn-compare {
+        font-size: 11px;
+    }
+    .btn-quickview {
+        font-size: 13px;
+    }
+    .header .container {
+        flex-wrap: wrap;
+    }
+    .logo {
+        font-size: 20px;
+    }
+    .compare-modal-content {
+        padding: 16px;
+    }
+    .compare-table th,
+    .compare-table td {
+        font-size: 12px;
+        padding: 8px 6px;
+    }
+    .compare-table td img {
+        width: 50px;
+        height: 50px;
+    }
+}
+</style>
+</head>
+<body>
+
+    
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-rocket"></i>
+                Toyo Toys
+            </a>
+              
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Category.html" class="active">Category</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+            <div class="header-actions">
+                <div class="cart-icon" id="cartIconBtn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <section class="page-banner">
+        <div class="container">
+            <h1>🎯 Our Collection</h1>
+            <p>Premium toys for every age — handpicked with love</p>
+        </div>
+    </section>
+
+    
+    <div class="container">
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="mattel">MATTEL</button>
+            <button class="filter-btn" data-filter="lego">LEGO</button>
+            <button class="filter-btn" data-filter="hasbro">Hasbro</button>
+            <button class="filter-btn" data-filter="spinmaster">Spin Master</button>
+            <button class="filter-btn" data-filter="stem">STEM</button>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <div class="compare-bar" id="compareBar">
+            <div class="compare-list" id="compareList">
+                <span class="compare-empty">No products selected for comparison</span>
+            </div>
+            <div class="compare-actions">
+                <button class="clear-compare" id="clearCompareBtn">Clear</button>
+                <button class="compare-now" id="compareNowBtn">Compare Now</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <div class="products-grid" id="productsGrid">
+            
+        </div>
+    </div>
+
+  
+     <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4>Toyo Toys</h4>
+                <p>Premium toys that spark imagination and learning for every age.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Returns &amp; Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Toyo Toys – Where imagination meets quality.</p>
+        </div>
+    </footer>
+
+    
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart <span id="cartTotalItems">0</span></h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <div class="cart-empty">
+                <i class="fa-regular fa-face-smile"></i>
+                Your cart is empty<br>
+                <span style="font-size:14px; color:#ccc;">Start adding some toys!</span>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalPrice">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fa-regular fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="quickviewModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div class="modal-grid">
+                <div>
+                    <img class="modal-img" id="modalImage" src="" alt="Product">
+                </div>
+                <div class="modal-details">
+                    <div class="cat" id="modalCategory">Category</div>
+                    <h2 id="modalName">Product Name</h2>
+                    <div class="price-big" id="modalPrice">
+                        <span class="old" id="modalOldPrice"></span>
+                        <span id="modalNewPrice"></span>
+                    </div>
+                    <div class="stock" id="modalStock">In Stock</div>
+                    <p class="desc" id="modalDesc">Product description goes here.</p>
+                    <div class="modal-actions">
+                        <button class="btn-cart-modal" id="modalAddToCart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                        <button class="btn-close-modal" id="modalCloseBtn2">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="compare-modal-overlay" id="compareModal">
+        <div class="compare-modal-content">
+            <button class="compare-modal-close" id="compareModalClose">&times;</button>
+            <h2 style="margin-bottom: 10px;">🔄 Compare Products</h2>
+            <p style="color: #888; margin-bottom: 20px;">See how your selected toys stack up against each other.</p>
+            <div id="compareTableContainer"></div>
+        </div>
+    </div>
+
+    
+    
+    
+    <script>
+
+
+
+
+
+        const products = [{
+            id: 1,
+            category: 'mattel',
+            name: 'Barbie Dreamhouse',
+            price: 49.99,
+            oldprice: 55.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4FU2-c4oMqdIJh2cuE9kirgIyWiE6xbbV7w&s',
+            desc: 'The ultimate Barbie Dreamhouse with 3 floors, 8 rooms, and 20+ accessories.',
+            stock: 'in',
+            discount: '-10%',
+            featured: '⭐ Best Seller'
+        }, {
+            id: 2,
+            category: 'mattel',
+            name: 'Hot Wheels Track Set',
+            price: 34.99,
+            oldprice: 41.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcrQSEiMn9NeWmt4wF1jKpXZy0Lgx5SvucAg&s',
+            desc: 'Build your own race track with loops, jumps, and launchers. Includes 2 Hot Wheels cars.',
+            stock: 'in',
+            discount: '-15%',
+            featured: null
+        }, {
+            id: 3,
+            category: 'mattel',
+            name: 'Fisher-Price Laugh & Learn',
+            price: 29.99,
+            oldprice: 31.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqFWNbDyXRcfZjCoX4Z73MKyacSaSJGfPtrA&s',
+            desc: 'Interactive learning toy with lights, sounds, and 50+ songs. Teaches alphabet, numbers, and shapes.',
+            stock: 'in',
+            discount: '-5%',
+            featured: null
+        }, {
+            id: 4,
+            category: 'mattel',
+            name: 'Barbie Camper Van',
+            price: 39.99,
+            oldprice: 44.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkXRQ4umyS-F00Tx7qAf4AeS2ubFlLF9c2gA&s',
+            desc: 'Barbie Camper Van with 2-story interior, pool, and slide. Includes Barbie doll and accessories.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 5,
+            category: 'mattel',
+            name: 'Hot Wheels Mega Garage',
+            price: 44.99,
+            oldprice: 49.99,
+            image: 'https://m.media-amazon.com/images/I/71FeniaFcHL.jpg',
+            desc: 'Mega garage with 4 levels, spiral track, and parking for 20+ cars. Includes 5 Hot Wheels cars.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 6,
+            category: 'mattel',
+            name: 'Fisher-Price Little People',
+            price: 24.99,
+            oldprice: 27.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW9GOt2YXIFSRQ795q3xTsj7XQacxD-hTtuQ&s',
+            desc: 'Little People farm set with animals, tractor, and 3 figures. Great for toddlers.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 7,
+            category: 'mattel',
+            name: 'Barbie Fashion Pack',
+            price: 14.99,
+            oldprice: 16.99,
+            image: 'https://i.ebayimg.com/images/g/68wAAOSw~X1fk~BJ/s-l1200.jpg',
+            desc: 'Fashion pack with 5 outfits and 10 accessories for Barbie doll.',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 8,
+            category: 'mattel',
+            name: 'Hot Wheels Criss Cross Crash',
+            price: 29.99,
+            oldprice: 33.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKUyB4XJd_EGMvlbxh9hO8AZa0ieOlL49_Ug&s',
+            desc: 'Criss Cross Crash track set with 2 cars. Watch them crash and fly!',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 9,
+            category: 'mattel',
+            name: 'Fisher-Price Rock-a-Stack',
+            price: 9.99,
+            oldprice: 11.99,
+            image: 'https://images.mattel.net/image/upload/w_430,f_auto,c_scale/shop-emea-prod/files/bylutf8qsjhzuzpdzhly_7e94f9cc-dc4f-4207-bae0-67843100fb2a.jpg',
+            desc: 'Classic stacking rings with wobbling base. Teaches colors and sizes.',
+            stock: 'in',
+            discount: '-15%',
+            featured: null
+        }, {
+            id: 10,
+            category: 'mattel',
+            name: 'Barbie Dreamtopia Mermaid',
+            price: 19.99,
+            oldprice: 22.99,
+            image: 'https://cdn11.bigcommerce.com/s-cy4lua1xoh/images/stencil/590x590/products/71466/754244/07f5f13d-c1a4-52f2-bcd0-15fdf45a03f3__46617.1776456538.jpg?c=1',
+            desc: 'Barbie Dreamtopia Mermaid doll with colorful tail and crown.',
+            stock: 'in',
+            discount: '-13%',
+            featured: null
+        }, {
+            id: 11,
+            category: 'lego',
+            name: 'LEGO City Police Station',
+            price: 59.99,
+            oldprice: 68.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIOLt0_XnVdhrO6TcH5n1syC_NXHnxqZ_qpw&s',
+            desc: 'Build a complete police station with jail, helicopter, and 5 minifigures. 743 pieces.',
+            stock: 'in',
+            discount: '-12%',
+            featured: '🔥 Top Pick'
+        }, {
+            id: 12,
+            category: 'lego',
+            name: 'LEGO Creator 3-in-1',
+            price: 44.99,
+            oldprice: 48.99,
+            image: 'https://m.media-amazon.com/images/I/615o4oJihgL.jpg',
+            desc: 'Build 3 different models: robot, dinosaur, or airplane. 572 pieces, endless creativity.',
+            stock: 'in',
+            discount: '-8%',
+            featured: null
+        }, {
+            id: 13,
+            category: 'lego',
+            name: 'LEGO DUPLO Town',
+            price: 39.99,
+            oldprice: 44.99,
+            image: 'https://www.lego.com/cdn/cs/set/assets/bltca24c43eade4bbe2/town_street_free_app_image5.jpeg?fit=crop&format=jpg&quality=80&width=800&height=600&dpr=1',
+            desc: 'DUPLO set with 95 pieces. Includes fire truck, police car, and 3 DUPLO figures.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 14,
+            category: 'lego',
+            name: 'LEGO Star Wars Millennium Falcon',
+            price: 79.99,
+            oldprice: 89.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTAsIA8l68_CXz_DSG548yfc1-HHZCoFaiPA&s',
+            desc: 'Iconic Millennium Falcon with 4 minifigures and detailed interior. 1,200 pieces.',
+            stock: 'in',
+            discount: '-10%',
+            featured: '⭐ Best Seller'
+        }, {
+            id: 15,
+            category: 'lego',
+            name: 'LEGO Friends Heartlake City',
+            price: 49.99,
+            oldprice: 54.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGPPDaVKy_0qgSPKvNCRlqUK9Vy0JSEJuJxQ&s',
+            desc: 'Heartlake City set with 4 minidolls, cafe, and boutique. 650 pieces.',
+            stock: 'in',
+            discount: '-8%',
+            featured: null
+        }, {
+            id: 16,
+            category: 'lego',
+            name: 'LEGO Technic Race Car',
+            price: 34.99,
+            oldprice: 38.99,
+            image: 'https://m.media-amazon.com/images/I/8133wGwL5yL._AC_UF894,1000_QL80_.jpg',
+            desc: 'Technic race car with working steering and suspension. 300 pieces.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 17,
+            category: 'lego',
+            name: 'LEGO Ninjago Monastery',
+            price: 54.99,
+            oldprice: 59.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjKoBZAnQer8t0AD2yQasKuLa0fmNaGTpMEA&s',
+            desc: 'Ninjago Monastery with 6 minifigures and dragon. 760 pieces.',
+            stock: 'in',
+            discount: '-8%',
+            featured: null
+        }, {
+            id: 18,
+            category: 'lego',
+            name: 'LEGO City Fire Station',
+            price: 64.99,
+            oldprice: 72.99,
+            image: 'https://m.media-amazon.com/images/I/81ZGqsNWyPL._AC_UF894,1000_QL80_.jpg',
+            desc: 'Fire station with fire truck, helicopter, and 4 firefighters. 500 pieces.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 19,
+            category: 'lego',
+            name: 'LEGO Building Blocks Toy ',
+            price: 29.99,
+            oldprice: 32.99,
+            image: 'https://toygenix.com.pk/cdn/shop/files/Yourparagraphtext_51_0a5be1c1-734a-4912-95e7-86b784c3195d.jpg?v=1756211649',
+            desc: 'Lego Minecraft Mystic Waterfall Escape Creator Building Blocks Toy For Kids.',
+            stock: 'in',
+            discount: '-8%',
+            featured: null
+        }, {
+            id: 20,
+            category: 'lego',
+            name: 'LEGO Speed Champions',
+            price: 24.99,
+            oldprice: 27.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJyHwN2-tOU6gmHMPLSP2DesVpVKg3pjms-w&s',
+            desc: 'Lego Speed Champions McLaren F1® Team MCL38 Race Car.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 21,
+            category: 'hasbro',
+            name: 'NERF Ultra Blaster',
+            price: 27.99,
+            oldprice: 34.99,
+            image: 'https://toyland.com.pk/cdn/shop/products/8c67effb14feade2aff30e273c6ae546a20bb0c6.jpg?v=1716684439',
+            desc: 'Hasbro Nerf Ultra Four Dart Blaster E9217.',
+            stock: 'in',
+            discount: '-20%',
+            featured: null
+        }, {
+            id: 22,
+            category: 'hasbro',
+            name: 'Play-Doh Kitchen Set',
+            price: 22.99,
+            oldprice: 26.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-xzil5R7fzj4K8qJZLqbFqERNgw9Tj5AXfQ&s',
+            desc: 'Play Doh Kitchen Creations Magical Oven Play Food Set.',
+            stock: 'in',
+            discount: '-15%',
+            featured: null
+        }, {
+            id: 23,
+            category: 'hasbro',
+            name: 'My Little Pony Collection',
+            price: 19.99,
+            oldprice: 22.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9fqMQcwBbYuUuFlgZkX0OckHmdFzFmZJ7xw&s',
+            desc: "My Little Pony - Make Your Mark Collection - Dolls.",
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 24,
+            category: 'hasbro',
+            name: 'Transformers Bumblebee',
+            price: 34.99,
+            oldprice: 39.99,
+            image: 'https://www.hasbro.com/common/productimages/en_US/A2A70A6A29574F54ACBB150776C88CA5/0e8e8fb0356a4b0dfe6fbb08e61a5e5a94222a1f.jpg',
+            desc: 'Transformers: Bumblebee Movie Toys, Power Charge Bumblebee Action Figure - Lights and Sounds, 10.5-inch.',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 25,
+            category: 'hasbro',
+            name: 'NERF Elite 2.0',
+            price: 24.99,
+            oldprice: 28.99,
+            image: 'https://img.drz.lazcdn.com/static/pk/p/ea86e9d18f5eab5c70acdaea15fdd8a4.png_720x720q80.png',
+            desc: 'NERF Elite 2.0 with 20 darts and tactical rail. Shoots up to 90 feet.',
+            stock: 'in',
+            discount: '-14%',
+            featured: null
+        }, {
+            id: 26,
+            category: 'hasbro',
+            name: 'Play-Doh Ice Cream Set',
+            price: 16.99,
+            oldprice: 19.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQJq8Iu1Ns_FWGK-jBVzyB_lQr5SWKmbnzhw&s',
+            desc: 'Ice cream set with 10 cans of Play-Doh and 8 molds. Make your own ice cream!',
+            stock: 'in',
+            discount: '-15%',
+            featured: null
+        }, {
+            id: 27,
+            category: 'hasbro',
+            name: 'Transformers Optimus Prime',
+            price: 44.99,
+            oldprice: 49.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeUYYZd2AGR5VZ8N6ftHk4V9n1MdZN8NlZew&s',
+            desc: 'Hasbro Transformers Optimus Prime Action Figure, 1 ct - King Soopers.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 28,
+            category: 'hasbro',
+            name: 'My Little Pony Castle',
+            price: 29.99,
+            oldprice: 33.99,
+            image: 'https://m.media-amazon.com/images/I/81FvLX1Wz5L._AC_UF350,350_QL80_.jpg',
+            desc: 'My Little Pony Castle set with 3 pony figures and accessories.',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 29,
+            category: 'hasbro',
+            name: 'NERF Rival Roundhouse',
+            price: 19.99,
+            oldprice: 22.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_28aq0Zt_PXU-UWlpUnAKwQs_RqSbvBHrQA&s',
+            desc: 'NERF Rival Roundhouse with 6-round rotating drum.',
+            stock: 'in',
+            discount: '-13%',
+            featured: null
+        }, {
+            id: 30,
+            category: 'hasbro',
+            name: 'Play-Doh Mega Pack',
+            price: 29.99,
+            oldprice: 34.99,
+            image: 'https://i.ytimg.com/vi/Jhi4AlYvN0c/hqdefault.jpg',
+            desc: 'Mega pack with 30 cans of Play-Doh and 20 tools. Endless creativity!',
+            stock: 'in',
+            discount: '-14%',
+            featured: null
+        }, {
+            id: 31,
+            category: 'spinmaster',
+            name: 'Bakugan Battle Pack',
+            price: 32.99,
+            oldprice: 36.99,
+            image: 'https://www.toys-shop.gr/139840-large_default/bakugan-battle-pack-assortment-styles-may-vary-multicoloured.jpg',
+            desc: 'Bakugan battle set with 3 Bakugan figures and 3 ability cards. Battle ready!',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 32,
+            category: 'spinmaster',
+            name: 'PAW Patrol Rescue Set',
+            price: 29.99,
+            oldprice: 31.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuNpPIfgNlqUY1jrOb5Vfz4H0pbrX5OZCkTw&s',
+            desc: 'PAW Patrol rescue set with Chase, Marshall, and their vehicles. Includes 6 rescue accessories.',
+            stock: 'in',
+            discount: '-5%',
+            featured: null
+        }, {
+            id: 33,
+            category: 'spinmaster',
+            name: 'Kinetic Sand Play Set',
+            price: 24.99,
+            oldprice: 28.99,
+            image: 'https://shop.spinmaster.com/cdn/shop/files/qprqnpftaofjltnzmcqn_1800x1800.jpg?v=1745608067',
+            desc: 'Kinetic sand set with 2 lbs of sand and 8 molds. Includes castle, animal, and vehicle molds.',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 34,
+            category: 'spinmaster',
+            name: 'Hatchimals CollEGGtibles',
+            price: 14.99,
+            oldprice: 16.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh4ULCTcWuZisAhznviMx5rw0aIcfMJzyeXA&s',
+            desc: 'Hatchimals CollEGGtibles set with 3 eggs and 3 surprises inside.',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 35,
+            category: 'spinmaster',
+            name: 'Bakugan Baku-Gear',
+            price: 19.99,
+            oldprice: 22.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcQjSZc3FuB_X0F0b3aM-AUm7IZXc8WwWBQ&s',
+            desc: 'Bakugan Baku-Gear set with 2 Bakugan and 2 gear pieces.',
+            stock: 'in',
+            discount: '-13%',
+            featured: null
+        }, {
+            id: 36,
+            category: 'spinmaster',
+            name: 'PAW Patrol Mighty Pups',
+            price: 34.99,
+            oldprice: 38.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOgYJV95fvZhKBczCY0fjOo9OXvC-EttXIBA&s',
+            desc: 'Mighty Pups set with 3 PAW Patrol figures and their super vehicles.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 37,
+            category: 'spinmaster',
+            name: 'Kinetic Sand Sandbox',
+            price: 34.99,
+            oldprice: 39.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBiPVuGe6OWdpl7bjkIMUJkhyf0cLt1-_dQQ&s',
+            desc: 'Kinetic Sand Sandbox with 3 lbs of sand and 10 molds. Includes carrying case.',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 38,
+            category: 'spinmaster',
+            name: 'Bakugan Evolution',
+            price: 27.99,
+            oldprice: 30.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ68eSuuIiH_As43gnz2wxYmLxcls22Mgdx7Q&s',
+            desc: 'Bakugan Evolution set with 4 Bakugan figures and 2 battle arenas.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 39,
+            category: 'spinmaster',
+            name: 'PAW Patrol Sea Patrol',
+            price: 39.99,
+            oldprice: 43.99,
+            image: 'https://i.ytimg.com/vi/0qQFtE8CC7E/maxresdefault.jpg',
+            desc: 'Sea Patrol set with Zuma and his submarine. Includes 3 rescue accessories.',
+            stock: 'in',
+            discount: '-8%',
+            featured: null
+        }, {
+            id: 40,
+            category: 'spinmaster',
+            name: 'Hatchimals Surprise',
+            price: 24.99,
+            oldprice: 27.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1wP7PXmJO_7qlOp5ZKGJwaroRB18SJXAcQw&s',
+            desc: 'Hatchimals Surprise egg with 2 mystery creatures inside. Crack it open!',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 41,
+            category: 'stem',
+            name: 'Coding Robot Kit',
+            price: 54.99,
+            oldprice: 68.99,
+            image: 'https://discountstore.pk/cdn/shop/files/81hpD0FSRbL._AC_SX679.webp?v=1779087108',
+            desc: 'Learn coding with this robot kit. Drag-and-drop programming, 12 missions, and LED lights.',
+            stock: 'in',
+            discount: '-20%',
+            featured: '🧠 STEM'
+        }, {
+            id: 42,
+            category: 'stem',
+            name: 'Puzzle Globe',
+            price: 29.99,
+            oldprice: 33.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCpbL0b7dH0uPMdgsw1iqa5ARhmfhnMiIpdw&s',
+            desc: 'Learn geography with this 150-piece puzzle globe. Includes continents, oceans, and landmarks.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 43,
+            category: 'stem',
+            name: 'Science Lab Kit',
+            price: 39.99,
+            oldprice: 43.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGsHL1pUoQQFo-DfTzNAEDt6b4VJq-U3qLjA&s',
+            desc: '70+ experiments science kit. Includes test tubes, chemicals, microscope, and lab guide.',
+            stock: 'in',
+            discount: '-8%',
+            featured: null
+        }, {
+            id: 44,
+            category: 'stem',
+            name: 'Magnetic Building Set',
+            price: 34.99,
+            oldprice: 38.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQaGluKWyRcPZY9IWFhO-7hT_Llim0eXcB5A&s',
+            desc: '100-piece magnetic building set. Build towers, bridges, and geometric shapes.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 45,
+            category: 'stem',
+            name: 'Solar Robot Kit',
+            price: 44.99,
+            oldprice: 49.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1pjDiSRyv2YuKFdynpPe4ksBAl3rsZFXAkw&s',
+            desc: 'Build 12 different solar-powered robots. Learn about renewable energy.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 46,
+            category: 'stem',
+            name: 'Microscope Set',
+            price: 32.99,
+            oldprice: 36.99,
+            image: 'https://smartkidsplanet.com/cdn/shop/files/91FZ7VTjSSL._AC_SL1500_grande.jpg?v=1734071256',
+            desc: '100x-1000x microscope set with 50 slides and 10 tools. Perfect for young scientists.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 47,
+            category: 'stem',
+            name: 'Circuit Building Kit',
+            price: 29.99,
+            oldprice: 33.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvmfdKOjhh3UtNqS2lU2Cx0XT8LAoZRnNHg&s',
+            desc: 'Build 20+ circuits with this kit. Includes wires, resistors, bulbs, and switches.',
+            stock: 'in',
+            discount: '-12%',
+            featured: null
+        }, {
+            id: 48,
+            category: 'stem',
+            name: 'Chemistry Lab',
+            price: 49.99,
+            oldprice: 54.99,
+            image: 'https://katib.pk/cdn/shop/files/WhatsAppImage2025-04-21at3.05.56PM_550x_f371a652-4302-4d39-a110-618d3265e592_480x480.webp?v=1756387561',
+            desc: '50+ chemistry experiments with safe chemicals. Includes lab equipment and guide.',
+            stock: 'in',
+            discount: '-8%',
+            featured: null
+        }, {
+            id: 49,
+            category: 'stem',
+            name: 'Rocket Launcher Kit',
+            price: 37.99,
+            oldprice: 41.99,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlSqp1mcYgACkokF1_YLQj2dR1056Nb-kMbg&s',
+            desc: 'Build and launch your own water rocket. Includes launcher, fins, and nose cone.',
+            stock: 'in',
+            discount: '-10%',
+            featured: null
+        }, {
+            id: 50,
+            category: 'stem',
+            name: 'Arduino Starter Kit',
+            price: 59.99,
+            oldprice: 69.99,
+            image: 'https://images-na.ssl-images-amazon.com/images/I/51oMvi4amlL._SL500_._AC_SL500_.jpg',
+            desc: 'Arduino starter kit with 200+ components. Learn electronics and programming.',
+            stock: 'in',
+            discount: '-14%',
+            featured: null
+        }];
+
+
+
+
+
+        let cart = {};
+        let compare = [];
+
+        function loadState() {
+            const savedCart = localStorage.getItem('toyoCart');
+            if (savedCart) {
+                try { cart = JSON.parse(savedCart); } catch (e) { cart = {}; }
+            }
+            const savedCompare = localStorage.getItem('toyoCompare');
+            if (savedCompare) {
+                try { compare = JSON.parse(savedCompare); } catch (e) { compare = []; }
+            }
+
+            compare = compare.filter((id, index) => compare.indexOf(id) === index).slice(0, 4);
+        }
+
+        function saveState() {
+            localStorage.setItem('toyoCart', JSON.stringify(cart));
+            localStorage.setItem('toyoCompare', JSON.stringify(compare));
+        }
+
+
+
+        function getProduct(id) {
+            return products.find(p => p.id === id);
+        }
+
+        function getProductPrice(id) {
+            const p = getProduct(id);
+            return p ? p.price : 0;
+        }
+
+        function getCartTotalItems() {
+            let total = 0;
+            for (let id in cart) {
+                total += cart[id];
+            }
+            return total;
+        }
+
+        function getCartTotalPrice() {
+            let total = 0;
+            for (let id in cart) {
+                const p = getProduct(Number(id));
+                if (p) total += p.price * cart[id];
+            }
+            return total;
+        }
+
+
+
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('productsGrid');
+            let html = '';
+
+            for (let p of products) {
+
+                if (filter !== 'all' && p.category !== filter) {
+
+                }
+
+                const inCompare = compare.includes(p.id);
+                const ratingStars = '★★★★★'; // all products have 5 stars for simplicity
+                const ratingCount = Math.floor(Math.random() * 30) + 10; // random for demo
+
+                html += `
+                    <div class="product-card" data-id="${p.id}" data-category="${p.category}" style="${filter !== 'all' && p.category !== filter ? 'display:none;' : ''}">
+                        <div class="product-img">
+                            <img src="${p.image}" alt="${p.name}">
+                            ${p.discount ? `<span class="discount-tag">${p.discount}</span>` : ''}
+                            ${p.featured ? `<span class="featured-tag">${p.featured}</span>` : ''}
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${p.category.toUpperCase()}</div>
+                            <div class="product-name">${p.name}</div>
+                            <div class="product-rating">${ratingStars} <span>(${ratingCount})</span></div>
+                            <div class="product-price">
+                                ${p.oldprice ? `<span class="old">$${p.oldprice.toFixed(2)}</span>` : ''}
+                                $${p.price.toFixed(2)}
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-cart" data-id="${p.id}">Add to Cart</button>
+                                <button class="btn-compare ${inCompare ? 'active' : ''}" data-id="${p.id}">Compare</button>
+                                <button class="btn-quickview" data-id="${p.id}"><i class="fa-regular fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = html;
+        }
+
+
+
+        function renderCart() {
+            const list = document.getElementById('cartItemsList');
+            const totalItemsSpan = document.getElementById('cartTotalItems');
+            const totalPriceSpan = document.getElementById('cartTotalPrice');
+            const badge = document.getElementById('cartBadge');
+
+            const totalItems = getCartTotalItems();
+            const totalPrice = getCartTotalPrice();
+
+            totalItemsSpan.textContent = totalItems;
+            badge.textContent = totalItems;
+            totalPriceSpan.textContent = '$' + totalPrice.toFixed(2);
+
+            let html = '';
+            let hasItems = false;
+
+            for (let id in cart) {
+                const qty = cart[id];
+                if (qty <= 0) continue;
+                hasItems = true;
+                const p = getProduct(Number(id));
+                if (!p) continue;
+
+                html += `
+                    <div class="cart-item">
+                        <img class="cart-item-img" src="${p.image}" alt="${p.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${p.name}</div>
+                            <div class="cart-item-price">$${p.price.toFixed(2)}</div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" data-id="${p.id}" data-delta="-1">-</button>
+                                <span>${qty}</span>
+                                <button class="qty-btn" data-id="${p.id}" data-delta="1">+</button>
+                                <button class="cart-item-remove" data-id="${p.id}"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (!hasItems) {
+                html = `
+                    <div class="cart-empty">
+                        <i class="fa-regular fa-face-smile"></i>
+                        Your cart is empty<br>
+                        <span style="font-size:14px; color:#ccc;">Start adding some toys!</span>
+                    </div>
+                `;
+            }
+
+            list.innerHTML = html;
+            saveState();
+        }
+
+
+
+        function renderCompareBar() {
+            const list = document.getElementById('compareList');
+
+            if (compare.length === 0) {
+                list.innerHTML = '<span class="compare-empty">No products selected for comparison</span>';
+
+                document.querySelectorAll('.btn-compare').forEach(btn => btn.classList.remove('active'));
+                return;
+            }
+
+            let chips = '';
+            for (let id of compare) {
+                const p = getProduct(id);
+                if (p) {
+                    chips += `
+                        <div class="compare-chip">
+                            ${p.name}
+                            <button class="remove-compare" data-id="${p.id}">✖</button>
+                        </div>
+                    `;
+                }
+            }
+            list.innerHTML = chips;
+
+            document.querySelectorAll('.btn-compare').forEach(btn => {
+                const id = Number(btn.getAttribute('data-id'));
+                btn.classList.toggle('active', compare.includes(id));
+            });
+
+            document.querySelectorAll('.remove-compare').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = Number(this.getAttribute('data-id'));
+                    removeFromCompare(id);
+                });
+            });
+        }
+
+
+
+        function addToCart(id) {
+            if (!cart[id]) cart[id] = 0;
+            cart[id]++;
+            renderCart();
+
+            const card = document.querySelector(`.product-card[data-id="${id}"]`);
+            if (card) {
+                const btn = card.querySelector('.btn-cart');
+                btn.classList.add('added');
+                btn.textContent = '✓ Added';
+                setTimeout(() => {
+                    btn.classList.remove('added');
+                    btn.textContent = 'Add to Cart';
+                }, 900);
+            }
+        }
+
+        function changeQuantity(id, delta) {
+            if (!cart[id]) cart[id] = 0;
+            let newQty = cart[id] + delta;
+            if (newQty < 0) newQty = 0;
+            if (newQty === 0) {
+                delete cart[id];
+            } else {
+                cart[id] = newQty;
+            }
+            renderCart();
+        }
+
+        function removeFromCart(id) {
+            delete cart[id];
+            renderCart();
+        }
+
+
+
+        function toggleCompare(id) {
+            const index = compare.indexOf(id);
+            if (index !== -1) {
+
+                compare.splice(index, 1);
+            } else {
+
+                if (compare.length >= 4) {
+                    alert('You can compare up to 4 products only.');
+                    return;
+                }
+                compare.push(id);
+            }
+            renderCompareBar();
+            saveState();
+        }
+
+        function removeFromCompare(id) {
+            const index = compare.indexOf(id);
+            if (index !== -1) {
+                compare.splice(index, 1);
+                renderCompareBar();
+                saveState();
+            }
+        }
+
+        function clearCompare() {
+            compare = [];
+            renderCompareBar();
+            saveState();
+        }
+
+
+
+        let currentModalId = null;
+
+        function openQuickView(id) {
+            const p = getProduct(id);
+            if (!p) return;
+            currentModalId = id;
+
+            document.getElementById('modalImage').src = p.image;
+            document.getElementById('modalCategory').textContent = p.category.toUpperCase();
+            document.getElementById('modalName').textContent = p.name;
+            document.getElementById('modalOldPrice').textContent = p.oldprice ? '$' + p.oldprice.toFixed(2) : '';
+            document.getElementById('modalNewPrice').textContent = '$' + p.price.toFixed(2);
+            document.getElementById('modalDesc').textContent = p.desc;
+
+            const stockEl = document.getElementById('modalStock');
+            if (p.stock === 'in') {
+                stockEl.textContent = '✅ In Stock';
+                stockEl.className = 'stock';
+            } else {
+                stockEl.textContent = '❌ Out of Stock';
+                stockEl.className = 'stock out';
+            }
+
+            document.getElementById('quickviewModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickviewModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+
+
+        function openCompareModal() {
+            if (compare.length < 2) {
+                alert('Please select at least 2 products to compare.');
+                return;
+            }
+
+            const compareProducts = compare.map(id => getProduct(id)).filter(p => p !== undefined);
+            if (compareProducts.length < 2) {
+                alert('Please select at least 2 products to compare.');
+                return;
+            }
+
+            let html = '<table class="compare-table">';
+            html += '<thead><tr><th>Feature</th>';
+            for (let p of compareProducts) {
+                html += `<th>${p.name}</th>`;
+            }
+            html += '</tr></thead><tbody>';
+
+            html += '<tr><td><strong>Category</strong></td>';
+            for (let p of compareProducts) html += `<td>${p.category.toUpperCase()}</td>`;
+            html += '</tr>';
+
+            html += '<tr><td><strong>Price</strong></td>';
+            for (let p of compareProducts) html += `<td>$${p.price.toFixed(2)}</td>`;
+            html += '</tr>';
+
+            html += '<tr><td><strong>Image</strong></td>';
+            for (let p of compareProducts) html += `<td><img src="${p.image}" alt="${p.name}"></td>`;
+            html += '</tr>';
+
+            html += '<tr><td><strong>Description</strong></td>';
+            for (let p of compareProducts) html += `<td>${p.desc}</td>`;
+            html += '</tr>';
+
+            html += '<tr><td><strong>Stock</strong></td>';
+            for (let p of compareProducts) {
+                html += `<td>${p.stock === 'in' ? '✅ In Stock' : '❌ Out of Stock'}</td>`;
+            }
+            html += '</tr>';
+
+            html += '</tbody></table>';
+
+            document.getElementById('compareTableContainer').innerHTML = html;
+            document.getElementById('compareModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCompareModal() {
+            document.getElementById('compareModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+
+
+        function filterProducts(category) {
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-filter') === category);
+            });
+
+            document.querySelectorAll('.product-card').forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+
+
+        function bindEvents() {
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterProducts(this.getAttribute('data-filter'));
+                });
+            });
+
+            document.getElementById('productsGrid').addEventListener('click', function(e) {
+                const target = e.target.closest('button');
+                if (!target) return;
+
+                const id = Number(target.getAttribute('data-id'));
+                if (!id) return;
+
+                if (target.classList.contains('btn-cart')) {
+                    e.stopPropagation();
+                    addToCart(id);
+                    return;
+                }
+
+                if (target.classList.contains('btn-compare')) {
+                    e.stopPropagation();
+                    toggleCompare(id);
+                    return;
+                }
+
+                if (target.classList.contains('btn-quickview')) {
+                    e.stopPropagation();
+                    openQuickView(id);
+                    return;
+                }
+            });
+
+            document.getElementById('productsGrid').addEventListener('click', function(e) {
+                const card = e.target.closest('.product-card');
+                if (!card) return;
+
+                if (e.target.closest('button')) return;
+                const id = Number(card.getAttribute('data-id'));
+                if (id) openQuickView(id);
+            });
+
+            document.getElementById('cartItemsList').addEventListener('click', function(e) {
+                const target = e.target.closest('button');
+                if (!target) return;
+
+                const id = Number(target.getAttribute('data-id'));
+                if (!id) return;
+
+                if (target.classList.contains('qty-btn')) {
+                    const delta = Number(target.getAttribute('data-delta'));
+                    changeQuantity(id, delta);
+                    return;
+                }
+
+                if (target.classList.contains('cart-item-remove')) {
+                    removeFromCart(id);
+                    return;
+                }
+            });
+
+            document.getElementById('cartIconBtn').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.add('open');
+                document.getElementById('cartOverlay').classList.add('active');
+            });
+
+            document.getElementById('closeCartBtn').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('open');
+                document.getElementById('cartOverlay').classList.remove('active');
+            });
+
+            document.getElementById('cartOverlay').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('open');
+                document.getElementById('cartOverlay').classList.remove('active');
+            });
+
+            document.getElementById('checkoutBtn').addEventListener('click', function() {
+                const totalItems = getCartTotalItems();
+                if (totalItems === 0) {
+                    alert('Your cart is empty! 🧸');
+                } else {
+                    const total = getCartTotalPrice();
+                    alert('🎉 Thank you for your order!\nTotal: $' + total.toFixed(2) + '\nWe\'ll ship it soon!');
+                }
+            });
+
+            document.getElementById('clearCompareBtn').addEventListener('click', clearCompare);
+            document.getElementById('compareNowBtn').addEventListener('click', openCompareModal);
+
+            document.getElementById('compareModalClose').addEventListener('click', closeCompareModal);
+            document.getElementById('compareModal').addEventListener('click', function(e) {
+                if (e.target === this) closeCompareModal();
+            });
+
+            document.getElementById('modalCloseBtn').addEventListener('click', closeQuickView);
+            document.getElementById('modalCloseBtn2').addEventListener('click', closeQuickView);
+            document.getElementById('quickviewModal').addEventListener('click', function(e) {
+                if (e.target === this) closeQuickView();
+            });
+
+            document.getElementById('modalAddToCart').addEventListener('click', function() {
+                if (currentModalId) {
+                    addToCart(currentModalId);
+
+                    document.getElementById('cartSidebar').classList.add('open');
+                    document.getElementById('cartOverlay').classList.add('active');
+                    closeQuickView();
+                }
+            });
+        }
+
+
+
+        function init() {
+            loadState();
+            renderProducts('all');
+            renderCart();
+            renderCompareBar();
+            bindEvents();
+
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
